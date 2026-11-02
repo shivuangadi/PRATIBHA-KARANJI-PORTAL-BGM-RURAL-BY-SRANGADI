@@ -1,0 +1,6 @@
+{
+  "name": "ಪ್ರತಿಭಾ ಕಾರಂಜಿ ಮತ್ತು ಕಲೋತ್ಸವ 2026–27",
+  "description": "ಕ್ಷೇತ್ರ ಶಿಕ್ಷಣಾಧಿಕಾರಿಗಳ ಹಾಗೂ ಕ್ಷೇತ್ರ ಸಮನ್ವಯ ಅಧಿಕಾರಿಗಳ ಕಾರ್ಯಾಲಯ, ಬೆಳಗಾವಿ ಗ್ರಾಮೀಣ - ಪ್ರತಿಭಾ ಕಾರಂಜಿ ಮತ್ತು ಕಲೋತ್ಸವ ನಿರ್ವಹಣಾ ಪೋರ್ಟಲ್",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
