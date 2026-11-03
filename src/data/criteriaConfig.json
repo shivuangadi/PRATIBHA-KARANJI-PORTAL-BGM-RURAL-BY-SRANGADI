@@ -1,0 +1,203 @@
+{
+  "metadata": {
+    "title": "ಪ್ರತಿಭಾ ಕಾರಂಜಿ ಮತ್ತು ಕಲೋತ್ಸವ 2026–27",
+    "description": "ನಿರ್ಣಾಯಕರ ಸ್ಪರ್ಧೆವಾರು ಮೌಲ್ಯಮಾಪನ ಮಾನದಂಡಗಳು",
+    "language": "ಕನ್ನಡ",
+    "totalMarksPerCompetition": 10,
+    "note": "ಚಿತ್ರಗಳ ಆಧಾರದ ಮೇಲೆ ಸಂಗ್ರಹಿಸಿದ ಸ್ಪರ್ಧೆವಾರು ಮೌಲ್ಯಮಾಪನ ಮಾನದಂಡಗಳು."
+  },
+  "competitions": [
+    {
+      "id": "kanthapatha_kannada",
+      "name": "ಕಂಠಪಾಠ (ಕನ್ನಡ)",
+      "matchPatterns": ["ಕಂಠಪಾಠ", "ಕಂಠಪಾಠ(ಕನ್ನಡ)", "ಕಂಠಪಾಠ(ಇಂಗ್ಲೀಷ)", "ಕಂಠಪಾಠ(ಹಿಂದಿ)", "ಕಂಠಪಾಠ(ಮರಾಠಿ)", "ಕಂಠಪಾಠ(ಉರ್ದು)", "ಕಂಠಪಾಠ(ತುಳು)", "ಕಂಠಪಾಠ(ಕೊಂಕಣಿ)", "ಕಂಠಪಾಠ(ತಮಿಳು)", "ಕಂಠಪಾಠ(ತೆಲಗು)"],
+      "criteria": [
+        { "name": "ಸ್ಪಷ್ಟ ಉಚ್ಚಾರ", "maxMarks": 3 },
+        { "name": "ವಿರಾಮ", "maxMarks": 2 },
+        { "name": "ಸರಾಗತೆ", "maxMarks": 3 },
+        { "name": "ನಿಲುಗಡೆ", "maxMarks": 2 }
+      ],
+      "totalMarks": 10
+    },
+    {
+      "id": "dharmika_pathana_sanskrita",
+      "name": "ಧಾರ್ಮಿಕ ಪಠಣ (ಸಂಸ್ಕೃತ)",
+      "matchPatterns": ["ಧಾರ್ಮಿಕ ಪಠಣ", "ಧಾರ್ಮಿಕ ಪಠಣ (ಸಂಸ್ಕೃತ)", "ಧಾರ್ಮಿಕ ಪಠಣ (ಅರೇಬಿಕ್)"],
+      "criteria": [
+        { "name": "ಸ್ಪಷ್ಟ ಉಚ್ಚಾರಣೆ", "maxMarks": 3 },
+        { "name": "ವಿರಾಮ", "maxMarks": 2 },
+        { "name": "ರಾಗ", "maxMarks": 3 },
+        { "name": "ನಿಖರತೆ", "maxMarks": 2 }
+      ],
+      "totalMarks": 10
+    },
+    {
+      "id": "deshabhakti_geethe",
+      "name": "ದೇಶಭಕ್ತಿ ಗೀತೆ",
+      "matchPatterns": ["ದೇಶಭಕ್ತಿ ಗೀತೆ", "ದೇಶಭಕ್ತಿ ಸಮೂಹ ಗೀತೆ"],
+      "criteria": [
+        { "name": "ಸ್ಪಷ್ಟ ಉಚ್ಚಾರ", "maxMarks": 3 },
+        { "name": "ವಿರಾಮ", "maxMarks": 2 },
+        { "name": "ಗೀತೆಯ ಆಯ್ಕೆ", "maxMarks": 2 },
+        { "name": "ರಾಗ", "maxMarks": 3 }
+      ],
+      "totalMarks": 10
+    },
+    {
+      "id": "chadmavesha",
+      "name": "ಭಾವ-ವೇಷ / ಛದ್ಮವೇಷ",
+      "matchPatterns": ["ಭಾವ-ವೇಷ", "ಛದ್ಮವೇಷ", "ವೇಷ"],
+      "criteria": [
+        { "name": "ವಿಷಯ", "maxMarks": 3 },
+        { "name": "ವೇಷಭೂಷಣ", "maxMarks": 3 },
+        { "name": "ಪ್ರದರ್ಶನ", "maxMarks": 2 },
+        { "name": "ನಿಖರತೆ", "maxMarks": 2 }
+      ],
+      "totalMarks": 10
+    },
+    {
+      "id": "kathe_heluvudu",
+      "name": "ಕಥೆ ಹೇಳುವುದು",
+      "matchPatterns": ["ಕಥೆ ಹೇಳುವುದು", "ಕಥೆ"],
+      "criteria": [
+        { "name": "ಸ್ಪಷ್ಟ ಉಚ್ಚಾರ", "maxMarks": 3 },
+        { "name": "ವಿರಾಮ", "maxMarks": 2 },
+        { "name": "ಕಥೆಯ ಆಯ್ಕೆ", "maxMarks": 2 },
+        { "name": "ಮಾತು", "maxMarks": 3 }
+      ],
+      "totalMarks": 10
+    },
+    {
+      "id": "chitrakale",
+      "name": "ಚಿತ್ರಕಲೆ",
+      "matchPatterns": ["ಚಿತ್ರಕಲೆ"],
+      "criteria": [
+        { "name": "ವಿಷಯ ಆಯ್ಕೆ", "maxMarks": 2 },
+        { "name": "ಗೆರೆಗಳ ಸಂಯೋಜನೆ", "maxMarks": 3 },
+        { "name": "ಬಣ್ಣ ಸಂಯೋಜನೆ", "maxMarks": 4 },
+        { "name": "ನಿಖರತೆ", "maxMarks": 1 }
+      ],
+      "totalMarks": 10
+    },
+    {
+      "id": "abhinaya_geethe",
+      "name": "ಅಭಿನಯ ಗೀತೆ",
+      "matchPatterns": ["ಅಭಿನಯ ಗೀತೆ"],
+      "criteria": [
+        { "name": "ಗೀತೆಯ ಆಯ್ಕೆ", "maxMarks": 3 },
+        { "name": "ರಾಗ", "maxMarks": 2 },
+        { "name": "ಅಭಿನಯ", "maxMarks": 3 },
+        { "name": "ಸ್ಪಷ್ಟ ಉಚ್ಚಾರ", "maxMarks": 2 }
+      ],
+      "totalMarks": 10
+    },
+    {
+      "id": "clay_modeling",
+      "name": "ಕ್ಲೇ ಮಾಡೆಲಿಂಗ್",
+      "matchPatterns": ["ಕ್ಲೇ ಮಾಡೆಲಿಂಗ್", "ಕ್ಲೇ"],
+      "criteria": [
+        { "name": "ಸಿದ್ಧತೆ", "maxMarks": 2 },
+        { "name": "ಆಕೃತಿ ವಿನ್ಯಾಸ", "maxMarks": 3 },
+        { "name": "ಬಳಸಿದ ಪರಿಕರಗಳು", "maxMarks": 2 },
+        { "name": "ನಿಖರತೆ", "maxMarks": 3 }
+      ],
+      "totalMarks": 10
+    },
+    {
+      "id": "bhakti_geethe",
+      "name": "ಭಕ್ತಿ ಗೀತೆ",
+      "matchPatterns": ["ಭಕ್ತಿ ಗೀತೆ", "ಭಾವಗೀತೆ", "ಜಾನಪದ ಗೀತೆ", "ಶಾಸ್ತ್ರೀಯ ಸಂಗೀತ", "ಗಝಲ್", "ಕವ್ವಾಲಿ"],
+      "criteria": [
+        { "name": "ಸ್ಪಷ್ಟ ಉಚ್ಚಾರ", "maxMarks": 3 },
+        { "name": "ವಿರಾಮ", "maxMarks": 2 },
+        { "name": "ಗೀತೆಯ ಆಯ್ಕೆ", "maxMarks": 2 },
+        { "name": "ರಾಗ / ಕಂಠಮಾಧುರ್ಯ", "maxMarks": 3 }
+      ],
+      "totalMarks": 10
+    },
+    {
+      "id": "ashubhashana",
+      "name": "ಆಶು ಭಾಷಣ",
+      "matchPatterns": ["ಆಶು ಭಾಷಣ", "ಆಶುಭಾಷಣ", "ಚರ್ಚಾ ಸ್ಪರ್ಧೆ"],
+      "criteria": [
+        { "name": "ಸ್ಪಷ್ಟ ಉಚ್ಚಾರ", "maxMarks": 3 },
+        { "name": "ವಿಷಯ ಮಂಡನೆ", "maxMarks": 3 },
+        { "name": "ವಾಕ್ ಚಾತುರ್ಯ", "maxMarks": 2 },
+        { "name": "ಮುಕ್ತಾಯ", "maxMarks": 2 }
+      ],
+      "totalMarks": 10
+    },
+    {
+      "id": "padhya_kavya_vachana",
+      "name": "ಕವನ / ವಚನ / ಪದ್ಯ ವಾಚನ",
+      "matchPatterns": ["ಕವನ / ವಚನ / ಪದ್ಯ ವಾಚನ", "ಕವನ", "ವಚನ", "ಪದ್ಯ ವಾಚನ", "ಪದ್ಯ"],
+      "criteria": [
+        { "name": "ವಿಷಯ", "maxMarks": 3 },
+        { "name": "ವಾಚನ ವಿಧಾನ", "maxMarks": 3 },
+        { "name": "ಪದ ಜೋಡಣೆ", "maxMarks": 2 },
+        { "name": "ವಿರಾಮ", "maxMarks": 2 }
+      ],
+      "totalMarks": 10
+    },
+    {
+      "id": "mimikri",
+      "name": "ಮಿಮಿಕ್ರಿ",
+      "matchPatterns": ["ಮಿಮಿಕ್ರಿ"],
+      "criteria": [
+        { "name": "ಸ್ಪಷ್ಟ ಉಚ್ಚಾರ", "maxMarks": 3 },
+        { "name": "ವಿರಾಮ", "maxMarks": 2 },
+        { "name": "ಭಾವ", "maxMarks": 2 },
+        { "name": "ಭಂಗಿ", "maxMarks": 3 }
+      ],
+      "totalMarks": 10
+    },
+    {
+      "id": "prabandha_rachane",
+      "name": "ಪ್ರಬಂಧ ರಚನೆ",
+      "matchPatterns": ["ಪ್ರಬಂಧ ರಚನೆ", "ಪ್ರಬಂಧ"],
+      "criteria": [
+        { "name": "ವಿಷಯದ ಪೀಠಿಕೆ", "maxMarks": 2 },
+        { "name": "ವಿಷಯದ ಬೆಳವಣಿಗೆ", "maxMarks": 4 },
+        { "name": "ಮುಕ್ತಾಯ", "maxMarks": 2 },
+        { "name": "ನಿರೂಪಣೆ ಮತ್ತು ಸ್ವಚ್ಛತೆ", "maxMarks": 2 }
+      ],
+      "totalMarks": 10
+    },
+    {
+      "id": "janapada_nritya",
+      "name": "ಜಾನಪದ ನೃತ್ಯ",
+      "matchPatterns": ["ಜಾನಪದ ನೃತ್ಯ", "ಜನಪದ ನೃತ್ಯ"],
+      "criteria": [
+        { "name": "ತಾಳ ಮತ್ತು ಲಯಬದ್ಧತೆ", "maxMarks": 3 },
+        { "name": "ವೇಷಭೂಷಣ ಮತ್ತು ರಂಗಪ್ರಸ್ತುತಿ", "maxMarks": 2 },
+        { "name": "ಅಭಿನಯ ಮತ್ತು ಚಲನವಲನ", "maxMarks": 3 },
+        { "name": "ತಂಡದ ಸಮನ್ವಯ ಮತ್ತು ಶಿಸ್ತು", "maxMarks": 2 }
+      ],
+      "totalMarks": 10
+    },
+    {
+      "id": "qawwali",
+      "name": "ಕವ್ವಾಲಿ",
+      "matchPatterns": ["ಕವ್ವಾಲಿ", "ಕವಾಲಿ"],
+      "criteria": [
+        { "name": "ರಾಗ ಮತ್ತು ಶ್ರುತಿ", "maxMarks": 3 },
+        { "name": "ತಾಳಲಯ ಮತ್ತು ಚಪ್ಪಾಳೆ ಸಮನ್ವಯ", "maxMarks": 2 },
+        { "name": "ಸಾಹಿತ್ಯ ಉಚ್ಚಾರಣೆ ಮತ್ತು ಗಾಯನ ಶೈಲಿ", "maxMarks": 3 },
+        { "name": "ತಂಡದ ಸಮನ್ವಯ ಮತ್ತು ಪ್ರಸ್ತುತಿ", "maxMarks": 2 }
+      ],
+      "totalMarks": 10
+    },
+    {
+      "id": "quiz",
+      "name": "ಕ್ವಿಜ್",
+      "matchPatterns": ["ಕ್ವಿಜ್", "ರಸಪ್ರಶ್ನೆ"],
+      "criteria": [
+        { "name": "ಉತ್ತರಗಳ ನಿಖರತೆ", "maxMarks": 4 },
+        { "name": "ವೇಗದ ಸ್ಪಂದನೆ ಮತ್ತು ಸಮಯಪಾಲನೆ", "maxMarks": 2 },
+        { "name": "ಸಾಮಾನ್ಯ ಜ್ಞಾನ ಮತ್ತು ಗ್ರಹಿಕೆ", "maxMarks": 2 },
+        { "name": "ತಂಡದ ಸಮನ್ವಯ ಮತ್ತು ನಿಯಮಪಾಲನೆ", "maxMarks": 2 }
+      ],
+      "totalMarks": 10
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { COMPETITION_EVENTS, CLUSTERS, STUDENTS } from '../../data/mockData';
+import { COMPETITION_EVENTS, CLUSTERS, STUDENTS, getCompetitionCriteria } from '../../data/mockData';
 import { CompetitionCategory } from '../../types';
 import { 
   ClipboardList, 
@@ -17,42 +17,53 @@ interface ParticipantMarkState {
   chestNumber: string;
   studentName: string;
   schoolName: string;
-  c1: number; // Presentation (max 25)
-  c2: number; // Melody / Pronunciation (max 30)
-  c3: number; // Artistry / Content (max 25)
-  c4: number; // Time & Discipline (max 20)
+  scores: number[]; // Dynamic scores matching active competition criteria
   remarks: string;
   locked: boolean;
 }
 
 export const MarksEntryView: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<CompetitionCategory>('junior');
-  const [selectedEventId, setSelectedEventId] = useState('div1-ev-01');
+  const [selectedEventId, setSelectedEventId] = useState('div1-ev-01-kn');
   const [selectedClusterId, setSelectedClusterId] = useState(CLUSTERS[0].id);
   const [anonymousMode, setAnonymousMode] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
 
   // Events filtered strictly for selected division
   const eventsForSelectedCategory = COMPETITION_EVENTS.filter(e => e.categoryId === selectedCategory);
-
-  // Initial mock scores list for the current event
-  const [marksData, setMarksData] = useState<ParticipantMarkState[]>([
-    { chestNumber: 'HB-201', studentName: 'ಕುಮಾರಿ ಸನ್ನಿಧಿ ಮಲ್ಲಿಕಾರ್ಜುನ ಪಾಟೀಲ', schoolName: 'ಸ.ಹಿ.ಪ್ರಾ.ಶಾಲೆ ಹಿರೇಬಾಗೇವಾಡಿ', c1: 24, c2: 29, c3: 24, c4: 20, remarks: 'ಅತ್ಯುತ್ತಮ ರಾಗ ಮತ್ತು ಭಾವಪೂರ್ಣ ಪ್ರಸ್ತುತಿ', locked: false },
-    { chestNumber: 'MR-201', studentName: 'ಕುಮಾರಿ ಪ್ರೇರಣಾ ಮಹಾಂತೇಶ ಚೌಗುಲೆ', schoolName: 'ಸರ್ಕಾರಿ ಸಂಯುಕ್ತ ಪ.ಪೂ ಕಾಲೇಜು ಮಾರಿಹಾಳ', c1: 22, c2: 27, c3: 22, c4: 19, remarks: 'ಉತ್ತಮ ಶ್ರುತಿ ಮತ್ತು ಲಯಬದ್ಧತೆ', locked: false },
-    { chestNumber: 'SB-201', studentName: 'ಕುಮಾರ ಕಾರ್ತಿಕ ಈಶ್ವರ ಬಡಿಗೇರ', schoolName: 'ಸರ್ಕಾರಿ ಪ್ರೌಢಶಾಲೆ ಸುಳೇಭಾವಿ', c1: 21, c2: 25, c3: 21, c4: 18, remarks: 'ಉತ್ತಮ ಪ್ರಯತ್ನ', locked: false },
-    { chestNumber: 'KD-201', studentName: 'ಕುಮಾರಿ ದೀಪಾ ಆನಂದ ದೇಶಪಾಂಡೆ', schoolName: 'ಕರ್ನಾಟಕ ಪಬ್ಲಿಕ್ ಶಾಲೆ ಕಡೋಲಿ', c1: 23, c2: 26, c3: 22, c4: 19, remarks: 'ಭಾವಪೂರ್ಣ ಗಾಯನ', locked: false },
-    { chestNumber: 'KK-201', studentName: 'ಕುಮಾರ ಗಣೇಶ ರಮೇಶ ಕುಂಬಾರ', schoolName: 'ಸರ್ಕಾರಿ ಮಾದರಿ ಪ್ರಾಥಮಿಕ ಶಾಲೆ ಕಾಕತಿ', c1: 20, c2: 24, c3: 20, c4: 18, remarks: 'ಉತ್ತಮ ಸಮಯಪಾಲನೆ', locked: false },
-  ]);
-
-  const activeEvent = COMPETITION_EVENTS.find(e => e.id === selectedEventId) || COMPETITION_EVENTS[0];
+  const activeEvent = COMPETITION_EVENTS.find(e => e.id === selectedEventId) || eventsForSelectedCategory[0] || COMPETITION_EVENTS[0];
   const activeCluster = CLUSTERS.find(c => c.id === selectedClusterId) || CLUSTERS[0];
 
-  const handleScoreChange = (chestNumber: string, field: 'c1' | 'c2' | 'c3' | 'c4', val: string) => {
-    const num = Math.max(0, parseInt(val) || 0);
+  // Active competition criteria matching JSON config
+  const activeCriteria = getCompetitionCriteria(activeEvent.nameKannada);
+
+  // Initial mock scores list for participants
+  const [marksData, setMarksData] = useState<ParticipantMarkState[]>([
+    { chestNumber: 'HB-201', studentName: 'ಕುಮಾರಿ ಸನ್ನಿಧಿ ಮಲ್ಲಿಕಾರ್ಜುನ ಪಾಟೀಲ', schoolName: 'ಸ.ಹಿ.ಪ್ರಾ.ಶಾಲೆ ಹಿರೇಬಾಗೇವಾಡಿ', scores: [2.7, 1.8, 2.7, 1.8], remarks: 'ಅತ್ಯುತ್ತಮ ಪ್ರಸ್ತುತಿ ಮತ್ತು ನಿಖರತೆ', locked: false },
+    { chestNumber: 'MR-201', studentName: 'ಕುಮಾರಿ ಪ್ರೇರಣಾ ಮಹಾಂತೇಶ ಚೌಗುಲೆ', schoolName: 'ಸರ್ಕಾರಿ ಸಂಯುಕ್ತ ಪ.ಪೂ ಕಾಲೇಜು ಮಾರಿಹಾಳ', scores: [2.5, 1.7, 2.5, 1.7], remarks: 'ಉತ್ತಮ ಲಯಬದ್ಧತೆ', locked: false },
+    { chestNumber: 'SB-201', studentName: 'ಕುಮಾರ ಕಾರ್ತಿಕ ಈಶ್ವರ ಬಡಿಗೇರ', schoolName: 'ಸರ್ಕಾರಿ ಪ್ರೌಢಶಾಲೆ ಸುಳೇಭಾವಿ', scores: [2.4, 1.6, 2.4, 1.6], remarks: 'ಉತ್ತಮ ಪ್ರಯತ್ನ', locked: false },
+    { chestNumber: 'KD-201', studentName: 'ಕುಮಾರಿ ದೀಪಾ ಆನಂದ ದೇಶಪಾಂಡೆ', schoolName: 'ಕರ್ನಾಟಕ ಪಬ್ಲಿಕ್ ಶಾಲೆ ಕಡೋಲಿ', scores: [2.6, 1.8, 2.6, 1.7], remarks: 'ಭಾವಪೂರ್ಣ ಪ್ರಸ್ತುತಿ', locked: false },
+    { chestNumber: 'KK-201', studentName: 'ಕುಮಾರ ಗಣೇಶ ರಮೇಶ ಕುಂಬಾರ', schoolName: 'ಸರ್ಕಾರಿ ಮಾದರಿ ಪ್ರಾಥಮಿಕ ಶಾಲೆ ಕಾಕತಿ', scores: [2.3, 1.5, 2.3, 1.6], remarks: 'ಉತ್ತಮ ಸಮಯಪಾಲನೆ', locked: false },
+  ]);
+
+  // Helper to ensure scores array matches active criteria
+  const getRowScores = (row: ParticipantMarkState): number[] => {
+    if (row.scores && row.scores.length === activeCriteria.length) {
+      return row.scores;
+    }
+    return activeCriteria.map(c => Number((c.maxMarks * 0.85).toFixed(1)));
+  };
+
+  const handleScoreChange = (chestNumber: string, criterionIndex: number, val: string) => {
+    const maxVal = activeCriteria[criterionIndex]?.maxMarks || 2.5;
+    const num = Math.min(maxVal, Math.max(0, parseFloat(val) || 0));
     setMarksData(prev =>
       prev.map(item => {
         if (item.chestNumber === chestNumber && !item.locked) {
-          return { ...item, [field]: num };
+          const currentScores = getRowScores(item);
+          const updated = [...currentScores];
+          updated[criterionIndex] = Number(num.toFixed(1));
+          return { ...item, scores: updated };
         }
         return item;
       })
@@ -178,11 +189,11 @@ export const MarksEntryView: React.FC = () => {
 
         <div className="bg-amber-100/60 p-3 rounded-lg border border-amber-200 flex flex-col justify-center">
           <div className="flex items-center justify-between text-xs font-bold text-amber-900">
-            <span>ಗರಿಷ್ಠ ಅಂಕಗಳು: 100</span>
+            <span>ಗರಿಷ್ಠ ಅಂಕಗಳು: 10</span>
             <span>ಸಮಯ: {activeEvent.timeLimitMinutes} ನಿಮಿಷ</span>
           </div>
           <span className="text-[11px] text-amber-800 font-medium mt-0.5">
-            ಮಾನದಂಡಗಳು: 25 + 30 + 25 + 20 = 100
+            ಮಾನದಂಡಗಳು: {activeCriteria.map(c => `${c.name} (${c.maxMarks})`).join(' + ')} = 10
           </span>
         </div>
       </div>
@@ -202,25 +213,15 @@ export const MarksEntryView: React.FC = () => {
             <tr>
               <th className="py-3 px-3">ಎದೆ ಸಂಖ್ಯೆ</th>
               {!anonymousMode && <th className="py-3 px-3">ವಿದ್ಯಾರ್ಥಿಯ ಹೆಸರು & ಶಾಲೆ</th>}
-              <th className="py-3 px-3 text-center">
-                <span>ಪ್ರಸ್ತುತಿ</span>
-                <span className="block text-[10px] text-purple-700 font-normal">(ಗರಿಷ್ಠ 25)</span>
-              </th>
-              <th className="py-3 px-3 text-center">
-                <span>ಶ್ರುತಿ / ಉಚ್ಚಾರಣೆ</span>
-                <span className="block text-[10px] text-blue-700 font-normal">(ಗರಿಷ್ಠ 30)</span>
-              </th>
-              <th className="py-3 px-3 text-center">
-                <span>ಕಲಾತ್ಮಕತೆ</span>
-                <span className="block text-[10px] text-emerald-700 font-normal">(ಗರಿಷ್ಠ 25)</span>
-              </th>
-              <th className="py-3 px-3 text-center">
-                <span>ಸಮಯಪಾಲನೆ</span>
-                <span className="block text-[10px] text-amber-700 font-normal">(ಗರಿಷ್ಠ 20)</span>
-              </th>
+              {activeCriteria.map((c, i) => (
+                <th key={i} className="py-3 px-3 text-center">
+                  <span>{c.name}</span>
+                  <span className="block text-[10px] text-amber-700 font-normal">(ಗರಿಷ್ಠ {c.maxMarks})</span>
+                </th>
+              ))}
               <th className="py-3 px-3 text-center font-extrabold text-slate-900">
                 <span>ಒಟ್ಟು ಅಂಕಗಳು</span>
-                <span className="block text-[10px] text-slate-500 font-normal">(100 ರಲ್ಲಿ)</span>
+                <span className="block text-[10px] text-slate-500 font-normal">(ಗರಿಷ್ಠ 10 ರಲ್ಲಿ)</span>
               </th>
               <th className="py-3 px-3">ತೀರ್ಪುಗಾರರ ಅಭಿಪ್ರಾಯ</th>
               <th className="py-3 px-3 text-center">ಸ್ಥಿತಿ</th>
@@ -228,7 +229,8 @@ export const MarksEntryView: React.FC = () => {
           </thead>
           <tbody className="divide-y divide-slate-100 font-medium">
             {marksData.map((row) => {
-              const total = (row.c1 || 0) + (row.c2 || 0) + (row.c3 || 0) + (row.c4 || 0);
+              const rowScores = getRowScores(row);
+              const total = Number(rowScores.reduce((sum, v) => sum + (Number(v) || 0), 0).toFixed(1));
               return (
                 <tr key={row.chestNumber} className="hover:bg-slate-50/70 transition-colors">
                   <td className="py-3 px-3 font-mono font-bold text-amber-900 text-sm">
@@ -242,62 +244,27 @@ export const MarksEntryView: React.FC = () => {
                     </td>
                   )}
 
-                  {/* Criteria 1 */}
-                  <td className="py-3 px-3 text-center">
-                    <input
-                      type="number"
-                      min="0"
-                      max="25"
-                      disabled={row.locked}
-                      value={row.c1}
-                      onChange={(e) => handleScoreChange(row.chestNumber, 'c1', e.target.value)}
-                      className="w-16 py-1 px-2 text-center text-xs font-bold text-slate-900 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 disabled:bg-slate-100"
-                    />
-                  </td>
-
-                  {/* Criteria 2 */}
-                  <td className="py-3 px-3 text-center">
-                    <input
-                      type="number"
-                      min="0"
-                      max="30"
-                      disabled={row.locked}
-                      value={row.c2}
-                      onChange={(e) => handleScoreChange(row.chestNumber, 'c2', e.target.value)}
-                      className="w-16 py-1 px-2 text-center text-xs font-bold text-slate-900 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 disabled:bg-slate-100"
-                    />
-                  </td>
-
-                  {/* Criteria 3 */}
-                  <td className="py-3 px-3 text-center">
-                    <input
-                      type="number"
-                      min="0"
-                      max="25"
-                      disabled={row.locked}
-                      value={row.c3}
-                      onChange={(e) => handleScoreChange(row.chestNumber, 'c3', e.target.value)}
-                      className="w-16 py-1 px-2 text-center text-xs font-bold text-slate-900 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 disabled:bg-slate-100"
-                    />
-                  </td>
-
-                  {/* Criteria 4 */}
-                  <td className="py-3 px-3 text-center">
-                    <input
-                      type="number"
-                      min="0"
-                      max="20"
-                      disabled={row.locked}
-                      value={row.c4}
-                      onChange={(e) => handleScoreChange(row.chestNumber, 'c4', e.target.value)}
-                      className="w-16 py-1 px-2 text-center text-xs font-bold text-slate-900 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 disabled:bg-slate-100"
-                    />
-                  </td>
+                  {/* Dynamic Criteria Inputs */}
+                  {activeCriteria.map((c, cIdx) => (
+                    <td key={cIdx} className="py-3 px-3 text-center">
+                      <input
+                        type="number"
+                        min="0"
+                        max={c.maxMarks}
+                        step="0.1"
+                        disabled={row.locked}
+                        value={rowScores[cIdx]}
+                        onChange={(e) => handleScoreChange(row.chestNumber, cIdx, e.target.value)}
+                        className="w-16 py-1 px-2 text-center text-xs font-bold text-slate-900 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 disabled:bg-slate-100"
+                      />
+                      <span className="block text-[10px] text-slate-400 mt-0.5">/{c.maxMarks}</span>
+                    </td>
+                  ))}
 
                   {/* Total */}
                   <td className="py-3 px-3 text-center">
                     <span className="inline-block px-3 py-1 rounded-lg bg-amber-50 text-amber-900 font-extrabold text-sm border border-amber-200">
-                      {total}
+                      {total} / 10
                     </span>
                   </td>
 

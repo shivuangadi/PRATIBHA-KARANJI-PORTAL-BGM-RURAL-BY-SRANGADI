@@ -13,8 +13,11 @@ import {
   Filter
 } from 'lucide-react';
 
+import { SeniorWinnersReport } from '../reports/SeniorWinnersReport';
+import { JuniorWinnersReport } from '../reports/JuniorWinnersReport';
+
 export const ReportsPrintingView: React.FC = () => {
-  const [selectedReportType, setSelectedReportType] = useState<'admit' | 'tabulation' | 'winners' | 'schedule'>('tabulation');
+  const [selectedReportType, setSelectedReportType] = useState<'junior_winners' | 'senior_winners' | 'tabulation' | 'winners' | 'admit' | 'schedule'>('junior_winners');
   const [selectedCluster, setSelectedCluster] = useState(CLUSTERS[0].id);
 
   const activeCluster = CLUSTERS.find(c => c.id === selectedCluster) || CLUSTERS[0];
@@ -51,12 +54,14 @@ export const ReportsPrintingView: React.FC = () => {
       </div>
 
       {/* Report Format Tabs */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
         {[
-          { id: 'tabulation', label: '1. ಅಂಕ ಕ್ರೋಢೀಕರಣ ರಿಜಿಸ್ಟರ್', sub: 'Multi-Judge Tabulation', icon: FileText },
-          { id: 'winners', label: '2. ವಿಜೇತರ ಅಂತಿಮ ಪಟ್ಟಿ', sub: 'Cluster Winner Roster', icon: Trophy },
-          { id: 'admit', label: '3. ಪ್ರವೇಶ ಪತ್ರಗಳ ಕಟ್ಟು', sub: 'Admit Cards Batch', icon: CreditCard },
-          { id: 'schedule', label: '4. ಸ್ಪರ್ಧಾ ವೇಳಾಪಟ್ಟಿ & ಕೊಠಡಿ', sub: 'Schedule & Rooms', icon: Calendar },
+          { id: 'junior_winners', label: '1. ಕಿರಿಯ ವಿಭಾಗದ ವಿಜೇತರು', sub: 'ಚಿತ್ರದಂತೆ ನಮೂನೆ (1-4)', icon: Trophy, isNew: true },
+          { id: 'senior_winners', label: '2. ಹಿರಿಯ ವಿಭಾಗದ ವಿಜೇತರು', sub: 'ಚಿತ್ರದಂತೆ ನಮೂನೆ (5-7)', icon: Trophy, isNew: true },
+          { id: 'tabulation', label: '3. ಅಂಕ ಕ್ರೋಢೀಕರಣ ರಿಜಿಸ್ಟರ್', sub: 'Multi-Judge Tabulation', icon: FileText },
+          { id: 'winners', label: '4. ವಿಜೇತರ ಅಂತಿಮ ಪಟ್ಟಿ', sub: 'Cluster Winner Roster', icon: Layers },
+          { id: 'admit', label: '5. ಪ್ರವೇಶ ಪತ್ರಗಳ ಕಟ್ಟು', sub: 'Admit Cards Batch', icon: CreditCard },
+          { id: 'schedule', label: '6. ವೇಳಾಪಟ್ಟಿ & ಕೊಠಡಿ', sub: 'Schedule & Rooms', icon: Calendar },
         ].map((rep) => {
           const Icon = rep.icon;
           const isActive = selectedReportType === rep.id;
@@ -64,15 +69,20 @@ export const ReportsPrintingView: React.FC = () => {
             <button
               key={rep.id}
               onClick={() => setSelectedReportType(rep.id as any)}
-              className={`p-3.5 rounded-xl text-left border transition ${
+              className={`p-3.5 rounded-xl text-left border transition relative cursor-pointer ${
                 isActive
-                  ? 'bg-amber-500 text-white border-amber-600 shadow-xs'
+                  ? 'bg-amber-600 text-white border-amber-700 shadow-xs'
                   : 'bg-white hover:bg-slate-50 text-slate-800 border-slate-200'
               }`}
             >
               <div className="flex items-center justify-between mb-1">
                 <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-amber-600'}`} />
                 {isActive && <CheckCircle2 className="w-3.5 h-3.5 text-white" />}
+                {rep.isNew && !isActive && (
+                  <span className="text-[9px] bg-amber-100 text-amber-900 font-extrabold px-1.5 py-0.5 rounded-full">
+                    ಅಧಿಕೃತ
+                  </span>
+                )}
               </div>
               <p className="font-bold text-xs leading-tight">{rep.label}</p>
               <p className={`text-[10px] mt-0.5 ${isActive ? 'text-amber-100' : 'text-slate-400'}`}>
@@ -103,8 +113,13 @@ export const ReportsPrintingView: React.FC = () => {
         </div>
       </div>
 
-      {/* Printable Sheet Canvas Preview */}
-      <div className="bg-white border-2 border-slate-300 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
+      {/* Printable Sheet Canvas Preview or Isolated Official Reports */}
+      {selectedReportType === 'junior_winners' ? (
+        <JuniorWinnersReport initialClusterId={selectedCluster} />
+      ) : selectedReportType === 'senior_winners' ? (
+        <SeniorWinnersReport initialClusterId={selectedCluster} />
+      ) : (
+        <div className="bg-white border-2 border-slate-300 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
         
         {/* Document Header in Print */}
         <div className="text-center border-b-2 border-slate-800 pb-4 space-y-1">
@@ -141,7 +156,7 @@ export const ReportsPrintingView: React.FC = () => {
                     <th className="border border-slate-300 p-2">ಸ್ಪರ್ಧಾ ವಿಷಯ</th>
                     <th className="border border-slate-300 p-2 text-center">ನಿರ್ಣಾಯಕರು 1</th>
                     <th className="border border-slate-300 p-2 text-center">ನಿರ್ಣಾಯಕರು 2</th>
-                    <th className="border border-slate-300 p-2 text-center">ಸರಾಸರಿ ಅಂಕ</th>
+                    <th className="border border-slate-300 p-2 text-center">ಸರಾಸರಿ ಅಂಕ (ಗರಿಷ್ಠ 10)</th>
                     <th className="border border-slate-300 p-2 text-center">ಶ್ರೇಯಾಂಕ</th>
                   </tr>
                 </thead>
@@ -154,7 +169,7 @@ export const ReportsPrintingView: React.FC = () => {
                       <td className="border border-slate-300 p-2">{r.eventNameKannada}</td>
                       <td className="border border-slate-300 p-2 text-center">{r.judgeScores[0]?.total}</td>
                       <td className="border border-slate-300 p-2 text-center">{r.judgeScores[1]?.total || r.judgeScores[0]?.total}</td>
-                      <td className="border border-slate-300 p-2 text-center font-bold">{r.consolidatedAverage}</td>
+                      <td className="border border-slate-300 p-2 text-center font-bold">{r.consolidatedAverage} / 10</td>
                       <td className="border border-slate-300 p-2 text-center font-bold">
                         {r.rank === 1 ? 'ಪ್ರಥಮ (1st)' : r.rank === 2 ? 'ದ್ವಿತೀಯ (2nd)' : 'ತೃತೀಯ (3rd)'}
                       </td>
@@ -220,6 +235,9 @@ export const ReportsPrintingView: React.FC = () => {
                   <p className="font-bold text-slate-900">{st.nameKannada}</p>
                   <p className="text-slate-600 text-[11px]">{st.schoolNameKannada}</p>
                   <p className="text-slate-700 font-semibold">{st.eventNameKannada}</p>
+                  {st.secondaryEventNameKannada && (
+                    <p className="text-blue-700 font-medium text-[10px]">+ {st.secondaryEventNameKannada}</p>
+                  )}
                 </div>
               ))}
             </div>
@@ -265,6 +283,7 @@ export const ReportsPrintingView: React.FC = () => {
         </div>
 
       </div>
+      )}
 
     </div>
   );

@@ -1,8 +1,9 @@
 import React from 'react';
-import { OFFICIAL_INFO } from '../data/mockData';
+import { useApp } from '../context/AppContext';
 import { Phone, Mail, MapPin, Award, CheckCircle2, Shield, Heart } from 'lucide-react';
 
 export const Footer: React.FC = () => {
+  const { officialInfo } = useApp();
   return (
     <footer className="bg-slate-900 text-slate-300 mt-auto border-t border-slate-800 no-print">
       {/* Top Banner Accent */}
@@ -19,20 +20,20 @@ export const Footer: React.FC = () => {
               </div>
               <div>
                 <h3 className="text-white font-bold text-sm leading-tight">
-                  {OFFICIAL_INFO.departmentKannada}
+                  {officialInfo.departmentKannada}
                 </h3>
                 <p className="text-xs text-amber-400 font-medium">
-                  {OFFICIAL_INFO.departmentSubKannada}
+                  {officialInfo.departmentSubKannada}
                 </p>
               </div>
             </div>
 
             <p className="text-xs text-slate-400 leading-relaxed">
-              {OFFICIAL_INFO.officeKannada}
+              {officialInfo.officeKannada}
             </p>
 
             <div className="inline-block bg-slate-800 px-3 py-1.5 rounded text-[11px] text-amber-300 border border-slate-700">
-              {OFFICIAL_INFO.eventNameKannada}
+              {officialInfo.eventNameKannada}
             </div>
           </div>
 
@@ -45,15 +46,15 @@ export const Footer: React.FC = () => {
             
             <div className="text-xs space-y-2">
               <div>
-                <p className="font-semibold text-slate-200">{OFFICIAL_INFO.beoName}</p>
-                <p className="text-slate-400 text-[11px]">{OFFICIAL_INFO.beoDesignation}</p>
+                <p className="font-semibold text-slate-200">{officialInfo.beoName}</p>
+                <p className="text-slate-400 text-[11px]">{officialInfo.beoDesignation}</p>
               </div>
               <div>
-                <p className="font-semibold text-slate-200">{OFFICIAL_INFO.brcName}</p>
-                <p className="text-slate-400 text-[11px]">{OFFICIAL_INFO.brcDesignation}</p>
+                <p className="font-semibold text-slate-200">{officialInfo.brcName}</p>
+                <p className="text-slate-400 text-[11px]">{officialInfo.brcDesignation}</p>
               </div>
               <div>
-                <p className="font-semibold text-slate-200">{OFFICIAL_INFO.nodalOfficer}</p>
+                <p className="font-semibold text-slate-200">{officialInfo.nodalOfficer}</p>
                 <p className="text-slate-400 text-[11px]">ಪ್ರತಿಭಾ ಕಾರಂಜಿ ಉಸ್ತುವಾರಿ ಕೋಶ</p>
               </div>
             </div>
@@ -69,15 +70,15 @@ export const Footer: React.FC = () => {
             <ul className="text-xs space-y-2.5 text-slate-400">
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
-                <span>{OFFICIAL_INFO.address}</span>
+                <span>{officialInfo.address}</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>{OFFICIAL_INFO.helpline}</span>
+                <span>{officialInfo.helpline}</span>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-blue-400 shrink-0" />
-                <span>{OFFICIAL_INFO.email}</span>
+                <span>{officialInfo.email}</span>
               </li>
             </ul>
           </div>

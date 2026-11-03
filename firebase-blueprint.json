@@ -1,0 +1,108 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Registered CRP, Headmaster, Judge, or Admin account",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "username": { "type": "string" },
+        "password": { "type": "string" },
+        "role": { "type": "string", "enum": ["crp", "headmaster", "judge", "admin"] },
+        "displayName": { "type": "string" },
+        "phone": { "type": "string" },
+        "clusterId": { "type": "string" },
+        "clusterName": { "type": "string" },
+        "schoolId": { "type": "string" },
+        "schoolName": { "type": "string" },
+        "designation": { "type": "string" },
+        "assignedEvents": { "type": "array" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["username", "password", "role"]
+    },
+    "Student": {
+      "title": "Student",
+      "description": "Student registered by School Headmaster",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "chestNumber": { "type": "string" },
+        "satsId": { "type": "string" },
+        "nameKannada": { "type": "string" },
+        "nameEnglish": { "type": "string" },
+        "gender": { "type": "string" },
+        "schoolId": { "type": "string" },
+        "schoolNameKannada": { "type": "string" },
+        "clusterId": { "type": "string" },
+        "clusterNameKannada": { "type": "string" },
+        "grade": { "type": "string" },
+        "categoryId": { "type": "string" },
+        "categoryKannada": { "type": "string" },
+        "eventId": { "type": "string" },
+        "eventNameKannada": { "type": "string" },
+        "secondaryEventId": { "type": "string" },
+        "secondaryEventNameKannada": { "type": "string" },
+        "mobile": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["chestNumber", "nameKannada", "clusterId", "categoryId", "eventNameKannada"]
+    },
+    "Judge": {
+      "title": "Judge",
+      "description": "Judge registered and assigned by CRP",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "code": { "type": "string" },
+        "nameKannada": { "type": "string" },
+        "designation": { "type": "string" },
+        "institution": { "type": "string" },
+        "phone": { "type": "string" },
+        "assignedClusterId": { "type": "string" },
+        "assignedClusterName": { "type": "string" },
+        "assignedEvents": { "type": "array" },
+        "status": { "type": "string" }
+      },
+      "required": ["nameKannada", "phone", "assignedClusterId", "assignedEvents"]
+    },
+    "Score": {
+      "title": "Score",
+      "description": "Marks awarded by judges and consolidated averages",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "chestNumber": { "type": "string" },
+        "studentNameKannada": { "type": "string" },
+        "schoolNameKannada": { "type": "string" },
+        "clusterId": { "type": "string" },
+        "clusterNameKannada": { "type": "string" },
+        "eventId": { "type": "string" },
+        "eventNameKannada": { "type": "string" },
+        "consolidatedAverage": { "type": "number" },
+        "rank": { "type": "number" },
+        "qualifiedForTaluk": { "type": "boolean" },
+        "judgeScores": { "type": "array" }
+      },
+      "required": ["chestNumber", "eventNameKannada", "consolidatedAverage"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User accounts"
+    },
+    "/students/{studentId}": {
+      "schema": { "$ref": "#/entities/Student" },
+      "description": "Registered students"
+    },
+    "/judges/{judgeId}": {
+      "schema": { "$ref": "#/entities/Judge" },
+      "description": "Registered judges"
+    },
+    "/scores/{scoreId}": {
+      "schema": { "$ref": "#/entities/Score" },
+      "description": "Marks and results"
+    }
+  }
+}

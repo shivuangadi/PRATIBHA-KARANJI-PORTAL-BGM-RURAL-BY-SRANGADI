@@ -5,10 +5,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { UserRole, NavItemKey } from './types';
+import { AppProvider, useApp } from './context/AppContext';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { HomePortal } from './components/HomePortal';
 import { DashboardLayout } from './components/DashboardLayout';
+import { AuthModal } from './components/auth/AuthModal';
 
 // Modular Views
 import { OverviewView } from './components/views/OverviewView';
@@ -24,11 +26,23 @@ import { TalukSelectionListView } from './components/views/TalukSelectionListVie
 import { ReportsPrintingView } from './components/views/ReportsPrintingView';
 import { AdminSettingsView } from './components/views/AdminSettingsView';
 
-export default function App() {
+function MainApp() {
+  const { currentUser, logout } = useApp();
   const [currentRole, setCurrentRole] = useState<UserRole>('home');
   const [activeNav, setActiveNav] = useState<NavItemKey>('overview');
   const [selectedClusterId, setSelectedClusterId] = useState<string>('c01');
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+  const [authModalRole, setAuthModalRole] = useState<UserRole | null>(null);
+
+  // Sync role and cluster if currentUser is already logged in
+  useEffect(() => {
+    if (currentUser) {
+      setCurrentRole(currentUser.role);
+      if (currentUser.clusterId) {
+        setSelectedClusterId(currentUser.clusterId);
+      }
+    }
+  }, [currentUser]);
 
   // Scroll to top whenever navigation changes
   useEffect(() => {
@@ -36,17 +50,49 @@ export default function App() {
   }, [currentRole, activeNav]);
 
   const handleRoleSelect = (role: UserRole, initialNav?: NavItemKey) => {
-    setCurrentRole(role);
-    if (initialNav) {
-      setActiveNav(initialNav);
+    if (role === 'home') {
+      setCurrentRole('home');
+      setMobileMenuOpen(false);
+      return;
+    }
+
+    // If already authenticated in this exact role, enter directly
+    if (currentUser && currentUser.role === role) {
+      setCurrentRole(role);
+      if (initialNav) setActiveNav(initialNav);
+      setMobileMenuOpen(false);
+      return;
+    }
+
+    // Open AuthModal for this specific role
+    setAuthModalRole(role);
+    if (initialNav) setActiveNav(initialNav);
+    setMobileMenuOpen(false);
+  };
+
+  const handleAuthSuccess = (authenticatedRole: UserRole) => {
+    setCurrentRole(authenticatedRole);
+    setAuthModalRole(null);
+    if (authenticatedRole === 'judge') {
+      setActiveNav('judge-login');
+    } else if (authenticatedRole === 'school') {
+      setActiveNav('student-registration');
+    } else if (authenticatedRole === 'crp') {
+      setActiveNav('overview');
     } else {
       setActiveNav('overview');
     }
-    setMobileMenuOpen(false);
   };
 
   const handleNavSelect = (nav: NavItemKey) => {
     setActiveNav(nav);
+    setMobileMenuOpen(false);
+  };
+
+  const handleLogout = () => {
+    logout();
+    setCurrentRole('home');
+    setActiveNav('overview');
     setMobileMenuOpen(false);
   };
 
@@ -131,6 +177,22 @@ export default function App() {
 
       {/* Official Government Footer */}
       <Footer />
+
+      {/* Role-Based Authentication & Registration Modal */}
+      <AuthModal
+        isOpen={authModalRole !== null}
+        role={authModalRole}
+        onClose={() => setAuthModalRole(null)}
+        onSuccess={handleAuthSuccess}
+      />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <AppProvider>
+      <MainApp />
+    </AppProvider>
   );
 }

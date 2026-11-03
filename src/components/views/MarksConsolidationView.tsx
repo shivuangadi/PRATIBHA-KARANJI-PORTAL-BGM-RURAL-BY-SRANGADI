@@ -16,7 +16,7 @@ import {
 
 export const MarksConsolidationView: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<CompetitionCategory>('junior');
-  const [selectedEventId, setSelectedEventId] = useState('div1-ev-01');
+  const [selectedEventId, setSelectedEventId] = useState('div1-ev-01-kn');
   const [selectedClusterId, setSelectedClusterId] = useState('all');
   const [resultsList, setResultsList] = useState<ScoreEntry[]>(CONSOLIDATED_RESULTS);
   const [isLocked, setIsLocked] = useState(false);
@@ -141,7 +141,7 @@ export const MarksConsolidationView: React.FC = () => {
               <th className="py-3 px-3 text-center">ನಿರ್ಣಾಯಕರು 1</th>
               <th className="py-3 px-3 text-center">ನಿರ್ಣಾಯಕರು 2</th>
               <th className="py-3 px-3 text-center font-extrabold text-slate-900 bg-amber-50">
-                ಸರಾಸರಿ ಅಂಕ (100)
+                ಸರಾಸರಿ ಅಂಕ (ಗರಿಷ್ಠ 10)
               </th>
               <th className="py-3 px-3 text-center">ತಾಲೂಕು ಅರ್ಹತೆ</th>
             </tr>

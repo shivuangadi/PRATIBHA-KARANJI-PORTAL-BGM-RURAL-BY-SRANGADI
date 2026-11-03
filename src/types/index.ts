@@ -74,6 +74,8 @@ export interface StudentParticipant {
   categoryKannada: string;
   eventId: string;
   eventNameKannada: string;
+  secondaryEventId?: string;
+  secondaryEventNameKannada?: string;
   mobile: string;
   status: 'ಖಚಿತಗೊಂಡಿದೆ' | 'ಅರ್ಜಿ ಸಲ್ಲಿಕೆ';
 }
@@ -83,12 +85,70 @@ export interface JudgeInfo {
   code: string;
   nameKannada: string;
   designation: string;
-  institution: string;
-  phone: string;
+  institution: string; // ಶಾಲೆಯ ಹೆಸರು
+  phone: string; // ನೋಂದಾಯಿತ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ (ಪಾಸ್‌ವರ್ಡ್)
   assignedClusterId: string;
   assignedClusterName: string;
-  assignedEvents: string[];
+  categoryId?: CompetitionCategory;
+  assignedEvents: string[]; // ಒಂದಕ್ಕಿಂತ ಹೆಚ್ಚು ಸ್ಪರ್ಧೆಗಳಿಗೆ ಚೆಕ್‌ಬಾಕ್ಸ್ ಮೂಲಕ ನಿಯೋಜನೆ
   status: 'ನೇಮಕಗೊಂಡಿದೆ' | 'ದೃಢೀಕರಣ ಬಾಕಿ';
+}
+
+export interface CrpAccount {
+  id: string;
+  clusterId: string;
+  clusterNameKannada: string;
+  crpName: string;
+  designation: string;
+  phone: string;
+  email?: string;
+  username: string;
+  password: string;
+  registeredAt: string;
+}
+
+export interface SchoolAccount {
+  id: string;
+  diseCode: string;
+  nameKannada: string;
+  nameEnglish?: string;
+  clusterId: string;
+  clusterNameKannada: string;
+  schoolType: 'ಸರ್ಕಾರಿ' | 'ಅನುದಾನಿತ' | 'ಅನುದಾನರಹಿತ';
+  headMasterName: string;
+  headMasterPhone: string;
+  username: string;
+  password: string;
+  registeredAt: string;
+}
+
+export interface CurrentUser {
+  role: UserRole;
+  id: string;
+  displayName: string;
+  username?: string;
+  clusterId?: string;
+  clusterName?: string;
+  schoolId?: string;
+  schoolName?: string;
+  diseCode?: string;
+  phone?: string;
+  designation?: string;
+  assignedEvents?: string[];
+  categoryId?: CompetitionCategory;
+}
+
+export interface CompetitionCriterion {
+  name: string;
+  maxMarks: number;
+}
+
+export interface CompetitionCriteriaConfig {
+  id: string;
+  name: string;
+  matchPatterns?: string[];
+  criteria: CompetitionCriterion[];
+  totalMarks: number;
 }
 
 export interface ScoreEntry {
@@ -97,20 +157,27 @@ export interface ScoreEntry {
   studentNameKannada: string;
   schoolNameKannada: string;
   clusterNameKannada: string;
+  clusterId?: string;
   eventId: string;
   eventNameKannada: string;
+  categoryId?: CompetitionCategory;
   judgeScores: {
     judgeId: string;
     judgeName: string;
     criteriaScores: {
-      presentation: number; // ಪ್ರಸ್ತುತಿ / ಹಾವಭಾವ (25)
-      melodyPronunciation: number; // ಶ್ರುತಿ / ಉಚ್ಚಾರಣೆ (30)
-      artistryContent: number; // ಕಲಾತ್ಮಕತೆ / ವಿಷಯ (25)
-      timeDiscipline: number; // ಸಮಯಪಾಲನೆ / ಶಿಸ್ತು (20)
+      presentation?: number;
+      melodyPronunciation?: number;
+      artistryContent?: number;
+      timeDiscipline?: number;
+      [criterionKey: string]: number | undefined;
     };
     total: number;
+    locked?: boolean;
+    submittedAt?: string;
   }[];
   consolidatedAverage: number;
   rank?: number; // 1, 2, 3
   qualifiedForTaluk?: boolean;
 }
+
+

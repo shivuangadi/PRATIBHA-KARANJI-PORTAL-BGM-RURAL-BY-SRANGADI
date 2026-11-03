@@ -7,13 +7,16 @@ import {
   ShieldCheck, 
   Users, 
   GraduationCap, 
-  Award,
-  ChevronRight,
-  Calendar,
-  MapPin,
-  Menu,
-  X
+  Award, 
+  ChevronRight, 
+  Calendar, 
+  MapPin, 
+  Menu, 
+  X,
+  LogOut,
+  UserCheck
 } from 'lucide-react';
+import { useApp } from '../context/AppContext';
 
 interface HeaderProps {
   currentRole: UserRole;
@@ -32,6 +35,7 @@ export const Header: React.FC<HeaderProps> = ({
   mobileMenuOpen,
   setMobileMenuOpen,
 }) => {
+  const { currentUser, logout, officialInfo } = useApp();
   const getRoleBadge = (role: UserRole) => {
     switch (role) {
       case 'admin':
@@ -76,24 +80,24 @@ export const Header: React.FC<HeaderProps> = ({
             <div className="flex flex-col">
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="text-xs font-semibold text-red-700 tracking-wide uppercase">
-                  {OFFICIAL_INFO.departmentKannada}
+                  {officialInfo.departmentKannada}
                 </span>
                 <span className="hidden sm:inline-block text-xs text-slate-400">•</span>
                 <span className="hidden sm:inline-block text-xs font-medium text-slate-600">
-                  {OFFICIAL_INFO.departmentSubKannada}
+                  {officialInfo.departmentSubKannada}
                 </span>
               </div>
 
               <h1 className="text-sm sm:text-base md:text-lg font-bold text-slate-900 leading-tight">
-                {OFFICIAL_INFO.officeKannada}
+                {officialInfo.officeKannada}
               </h1>
 
               <div className="flex items-center gap-2 mt-0.5 text-xs text-amber-800 font-medium">
                 <span className="bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-bold text-[11px] border border-amber-300">
-                  {OFFICIAL_INFO.academicYear}
+                  {officialInfo.academicYear}
                 </span>
                 <span className="font-semibold text-slate-700">
-                  {OFFICIAL_INFO.titleKannada}
+                  {officialInfo.titleKannada}
                 </span>
               </div>
             </div>
@@ -106,58 +110,83 @@ export const Header: React.FC<HeaderProps> = ({
             <div className="hidden xl:flex flex-col items-end text-xs text-slate-500 pr-2 border-r border-slate-200">
               <div className="flex items-center gap-1 font-medium text-slate-700">
                 <MapPin className="w-3.5 h-3.5 text-red-600" />
-                <span>{OFFICIAL_INFO.talukKannada}, {OFFICIAL_INFO.districtKannada}</span>
+                <span>{officialInfo.talukKannada}, {officialInfo.districtKannada}</span>
               </div>
               <div className="flex items-center gap-1 text-[11px] text-slate-500">
                 <Calendar className="w-3 h-3 text-amber-600" />
-                <span>ಶೈಕ್ಷಣಿಕ ವರ್ಷ {OFFICIAL_INFO.academicYear}</span>
+                <span>ಶೈಕ್ಷಣಿಕ ವರ್ಷ {officialInfo.academicYear}</span>
               </div>
             </div>
 
-            {/* Current Active Role Badge */}
+            {/* Current Active Role Badge & Logout */}
             {currentRole !== 'home' ? (
               <div className="flex items-center gap-2">
                 <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold border ${currentBadge.bg} shadow-xs`}>
                   <CurrentIcon className="w-4 h-4" />
-                  <span className="hidden sm:inline">{currentBadge.label}</span>
+                  <span className="hidden sm:inline">
+                    {currentUser?.displayName 
+                      ? `${currentUser.displayName} (${currentUser.clusterName || currentUser.schoolName || currentBadge.label})` 
+                      : currentBadge.label}
+                  </span>
                 </span>
 
                 <button
                   onClick={() => onRoleSelect('home')}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors border border-slate-300"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors border border-slate-300 cursor-pointer"
                   title="ಮುಖಪುಟಕ್ಕೆ ಮರಳಿ"
                 >
                   <Home className="w-3.5 h-3.5 text-slate-600" />
-                  <span className="hidden md:inline">ಮುಖಪುಟಕ್ಕೆ ಮರಳಿ</span>
+                  <span className="hidden md:inline">ಮುಖಪುಟ</span>
                 </button>
+
+                {currentUser && (
+                  <button
+                    onClick={() => {
+                      logout();
+                      onRoleSelect('home');
+                    }}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-red-700 bg-red-50 hover:bg-red-100 rounded-lg transition-colors border border-red-200 cursor-pointer"
+                    title="ಖಾತೆಯಿಂದ ಲಾಗೌಟ್ ಆಗಿ"
+                  >
+                    <LogOut className="w-3.5 h-3.5 text-red-600" />
+                    <span className="hidden md:inline">ಲಾಗೌಟ್</span>
+                  </button>
+                )}
               </div>
             ) : (
-              <div className="hidden sm:flex items-center gap-1.5 bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs">
-                <span className="px-2 py-1 text-slate-500 font-medium">ತ್ವರಿತ ಪ್ರವೇಶ:</span>
-                <button 
-                  onClick={() => onRoleSelect('admin')} 
-                  className="px-2 py-1 font-semibold rounded text-purple-700 hover:bg-purple-50 transition"
-                >
-                  ಅಡ್ಮಿನ್
-                </button>
-                <button 
-                  onClick={() => onRoleSelect('crp')} 
-                  className="px-2 py-1 font-semibold rounded text-emerald-700 hover:bg-emerald-50 transition"
-                >
-                  ಸಿ.ಆರ್.ಪಿ
-                </button>
-                <button 
-                  onClick={() => onRoleSelect('school')} 
-                  className="px-2 py-1 font-semibold rounded text-blue-700 hover:bg-blue-50 transition"
-                >
-                  ಶಾಲೆ
-                </button>
-                <button 
-                  onClick={() => onRoleSelect('judge')} 
-                  className="px-2 py-1 font-semibold rounded text-amber-700 hover:bg-amber-50 transition"
-                >
-                  ನಿರ್ಣಾಯಕರು
-                </button>
+              <div className="flex items-center gap-1.5">
+                {currentUser && (
+                  <span className="hidden lg:inline-flex text-xs font-bold text-slate-700 bg-amber-50 px-2.5 py-1 rounded-md border border-amber-200">
+                    ಲಾಗಿನ್: {currentUser.displayName}
+                  </span>
+                )}
+                <div className="hidden sm:flex items-center gap-1.5 bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs">
+                  <span className="px-2 py-1 text-slate-500 font-medium">ಪ್ರವೇಶ:</span>
+                  <button 
+                    onClick={() => onRoleSelect('admin')} 
+                    className="px-2 py-1 font-semibold rounded text-purple-700 hover:bg-purple-50 transition cursor-pointer"
+                  >
+                    ಅಡ್ಮಿನ್
+                  </button>
+                  <button 
+                    onClick={() => onRoleSelect('crp')} 
+                    className="px-2 py-1 font-semibold rounded text-emerald-700 hover:bg-emerald-50 transition cursor-pointer"
+                  >
+                    ಸಿ.ಆರ್.ಪಿ
+                  </button>
+                  <button 
+                    onClick={() => onRoleSelect('school')} 
+                    className="px-2 py-1 font-semibold rounded text-blue-700 hover:bg-blue-50 transition cursor-pointer"
+                  >
+                    ಶಾಲೆ
+                  </button>
+                  <button 
+                    onClick={() => onRoleSelect('judge')} 
+                    className="px-2 py-1 font-semibold rounded text-amber-700 hover:bg-amber-50 transition cursor-pointer"
+                  >
+                    ನಿರ್ಣಾಯಕರು
+                  </button>
+                </div>
               </div>
             )}
 

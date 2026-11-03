@@ -54,26 +54,125 @@
   ],
   "events": [
     {
-      "id": "div1-ev-01",
+      "id": "div1-ev-01-kn",
       "categoryId": "junior",
-      "nameKannada": "ಕಂಠಪಾಠ",
-      "nameEnglish": "Recitation",
+      "nameKannada": "ಕಂಠಪಾಠ(ಕನ್ನಡ)",
+      "nameEnglish": "Recitation (Kannada)",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 4,
-      "description": "ಸ್ಪಷ್ಟ ಉಚ್ಚಾರಣೆ ಹಾಗೂ ಶುದ್ಧ ಪಠಣ"
+      "description": "ಕನ್ನಡ ಕಾವ್ಯ ಹಾಗೂ ಸಾಹಿತ್ಯದ ಸ್ಪಷ್ಟ ಉಚ್ಚಾರಣೆ ಹಾಗೂ ಶುದ್ಧ ಪಠಣ"
     },
     {
-      "id": "div1-ev-02",
+      "id": "div1-ev-01-en",
       "categoryId": "junior",
-      "nameKannada": "ಧಾರ್ಮಿಕ ಪಠಣ (ಸಂಸ್ಕೃತ, ಅರೇಬಿಕ್)",
-      "nameEnglish": "Religious Recitation (Sanskrit / Arabic)",
+      "nameKannada": "ಕಂಠಪಾಠ(ಇಂಗ್ಲೀಷ)",
+      "nameEnglish": "Recitation (English)",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 4,
-      "description": "ಶಾಸ್ತ್ರೋಕ್ತ ರಾಗ ಮತ್ತು ಶುದ್ಧ ಉಚ್ಚಾರಣೆ"
+      "description": "ಇಂಗ್ಲಿಷ್ ಕವಿತೆಯ ನಿರರ್ಗಳ ಪಠಣ ಹಾಗೂ ಉಚ್ಚಾರಣೆ"
+    },
+    {
+      "id": "div1-ev-01-hi",
+      "categoryId": "junior",
+      "nameKannada": "ಕಂಠಪಾಠ(ಹಿಂದಿ)",
+      "nameEnglish": "Recitation (Hindi)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 4,
+      "description": "ಹಿಂದಿ ಕಾವ್ಯ ಪಠಣ ಹಾಗೂ ಸ್ಪಷ್ಟ ಉಚ್ಚಾರಣೆ"
+    },
+    {
+      "id": "div1-ev-01-mr",
+      "categoryId": "junior",
+      "nameKannada": "ಕಂಠಪಾಠ(ಮರಾಠಿ)",
+      "nameEnglish": "Recitation (Marathi)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 4,
+      "description": "ಮರಾಠಿ ಪದ್ಯ ಹಾಗೂ ಶ್ಲೋಕಗಳ ಲಯಬದ್ಧ ಪಠಣ"
+    },
+    {
+      "id": "div1-ev-01-ur",
+      "categoryId": "junior",
+      "nameKannada": "ಕಂಠಪಾಠ(ಉರ್ದು)",
+      "nameEnglish": "Recitation (Urdu)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 4,
+      "description": "ಉರ್ದು ನಝ್ಮ್ ಹಾಗೂ ಶಾಯರಿ ಶುದ್ಧ ಉಚ್ಚಾರಣೆ"
+    },
+    {
+      "id": "div1-ev-01-tu",
+      "categoryId": "junior",
+      "nameKannada": "ಕಂಠಪಾಠ(ತುಳು)",
+      "nameEnglish": "Recitation (Tulu)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 4,
+      "description": "ತುಳು ಪಾಡ್ಡನ ಹಾಗೂ ಕವನಗಳ ಸುಂದರ ಪಠಣ"
+    },
+    {
+      "id": "div1-ev-01-ko",
+      "categoryId": "junior",
+      "nameKannada": "ಕಂಠಪಾಠ(ಕೊಂಕಣಿ)",
+      "nameEnglish": "Recitation (Konkani)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 4,
+      "description": "ಕೊಂಕಣಿ ಸಾಹಿತ್ಯದ ಸುಮಧುರ ಪಠಣ"
+    },
+    {
+      "id": "div1-ev-01-ta",
+      "categoryId": "junior",
+      "nameKannada": "ಕಂಠಪಾಠ(ತಮಿಳು)",
+      "nameEnglish": "Recitation (Tamil)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 4,
+      "description": "ತಮಿಳು ಕವನಗಳ ಸ್ಪಷ್ಟ ಹಾಗೂ ಭಾವಪೂರ್ಣ ಪಠಣ"
+    },
+    {
+      "id": "div1-ev-01-te",
+      "categoryId": "junior",
+      "nameKannada": "ಕಂಠಪಾಠ(ತೆಲಗು)",
+      "nameEnglish": "Recitation (Telugu)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 4,
+      "description": "ತೆಲುಗು ಪದ್ಯಗಳ ಶುದ್ಧ ಹಾಗೂ ರಾಗಬದ್ಧ ಪಠಣ"
+    },
+    {
+      "id": "div1-ev-02-sa",
+      "categoryId": "junior",
+      "nameKannada": "ಧಾರ್ಮಿಕ ಪಠಣ (ಸಂಸ್ಕೃತ)",
+      "nameEnglish": "Religious Recitation (Sanskrit)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 4,
+      "description": "ಶಾಸ್ತ್ರೋಕ್ತ ಸಂಸ್ಕೃತ ಶ್ಲೋಕ, ಸ್ತೋತ್ರ ಮತ್ತು ಶುದ್ಧ ಉಚ್ಚಾರಣೆ"
+    },
+    {
+      "id": "div1-ev-02-ar",
+      "categoryId": "junior",
+      "nameKannada": "ಧಾರ್ಮಿಕ ಪಠಣ (ಅರೇಬಿಕ್)",
+      "nameEnglish": "Religious Recitation (Arabic)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 4,
+      "description": "ಅರೇಬಿಕ್ ತಜ್ವೀದ್ ಹಾಗೂ ಕಿರಾತ್ ಪಠಣ"
     },
     {
       "id": "div1-ev-03",
@@ -82,7 +181,7 @@
       "nameEnglish": "Patriotic Song",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 4,
       "description": "ದೇಶಪ್ರೇಮ ಪ್ರಚೋದಕ ಹಾಡುಗಳು, ಲಯಬದ್ಧತೆ"
     },
@@ -93,7 +192,7 @@
       "nameEnglish": "Fancy Dress / Bhava Vesha",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 3,
       "description": "ಐತಿಹಾಸಿಕ ಅಥವಾ ಸಾಮಾಜಿಕ ವೇಷಭೂಷಣ ಮತ್ತು ಅಭಿನಯ"
     },
@@ -104,7 +203,7 @@
       "nameEnglish": "Story Telling",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 4,
       "description": "ನೀತಿ ಬೋಧಕ ಕಥೆ, ಮುಖಭಾವ ಹಾಗೂ ನಿರೂಪಣೆ"
     },
@@ -115,7 +214,7 @@
       "nameEnglish": "Drawing & Painting",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 60,
       "description": "ಸ್ಥಳದಲ್ಲೇ ನೀಡುವ ವಿಷಯಕ್ಕೆ ಚಿತ್ರ ಬಿಡಿಸುವುದು"
     },
@@ -126,7 +225,7 @@
       "nameEnglish": "Action Song",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 4,
       "description": "ಗಾಯನ ಮತ್ತು ಹಾವಭಾವಗಳ ಸುಂದರ ಸಮ್ಮಿಲನ"
     },
@@ -137,7 +236,7 @@
       "nameEnglish": "Clay Modeling",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 45,
       "description": "ಜೇಡಿಮಣ್ಣಿನಿಂದ ಸೃಜನಶೀಲ ಮೂರ್ತಿ/ವಸ್ತು ರಚನೆ"
     },
@@ -148,7 +247,7 @@
       "nameEnglish": "Devotional Song",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 4,
       "description": "ಶ್ರುತಿ ಮತ್ತು ಭಾವಪೂರ್ಣ ಭಕ್ತಿ ಸಂಗೀತ"
     },
@@ -159,31 +258,131 @@
       "nameEnglish": "Extempore Speech",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 3,
       "description": "ಸ್ಥಳದಲ್ಲೇ ನೀಡುವ ಸರಳ ವಿಷಯಕ್ಕೆ ತತ್ಕ್ಷಣದ ಭಾಷಣ"
     },
+
     {
-      "id": "div2-ev-01",
+      "id": "div2-ev-01-kn",
       "categoryId": "senior",
-      "nameKannada": "ಕಂಠಪಾಠ",
-      "nameEnglish": "Recitation",
+      "nameKannada": "ಕಂಠಪಾಠ(ಕನ್ನಡ)",
+      "nameEnglish": "Recitation (Kannada)",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 4,
       "description": "ಕಾವ್ಯ ಹಾಗೂ ಸೂಕ್ತಿಗಳ ನಿಖರ ಕಂಠಪಾಠ"
     },
     {
-      "id": "div2-ev-02",
+      "id": "div2-ev-01-en",
       "categoryId": "senior",
-      "nameKannada": "ಧಾರ್ಮಿಕ ಪಠಣ (ಸಂಸ್ಕೃತ, ಅರೇಬಿಕ್)",
-      "nameEnglish": "Religious Recitation (Sanskrit / Arabic)",
+      "nameKannada": "ಕಂಠಪಾಠ(ಇಂಗ್ಲೀಷ)",
+      "nameEnglish": "Recitation (English)",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 4,
-      "description": "ಶಾಸ್ತ್ರಬದ್ಧ ಧಾರ್ಮಿಕ ಪಠಣ, ಉಚ್ಚಾರಣಾ ಶುದ್ಧಿ"
+      "description": "ಆಂಗ್ಲ ಭಾಷಾ ಕಾವ್ಯ ಪಠಣ ಹಾಗೂ ಉಚ್ಚಾರಣಾ ಸ್ಪಷ್ಟತೆ"
+    },
+    {
+      "id": "div2-ev-01-hi",
+      "categoryId": "senior",
+      "nameKannada": "ಕಂಠಪಾಠ(ಹಿಂದಿ)",
+      "nameEnglish": "Recitation (Hindi)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 4,
+      "description": "ಹಿಂದಿ ಕವಿತೆಗಳ ಭಾವಪೂರ್ಣ ಕಂಠಪಾಠ"
+    },
+    {
+      "id": "div2-ev-01-mr",
+      "categoryId": "senior",
+      "nameKannada": "ಕಂಠಪಾಠ(ಮರಾಠಿ)",
+      "nameEnglish": "Recitation (Marathi)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 4,
+      "description": "ಮರಾಠಿ ಕಾವ್ಯ ಹಾಗೂ ಅಭಂಗಗಳ ಶುದ್ಧ ಪಠಣ"
+    },
+    {
+      "id": "div2-ev-01-ur",
+      "categoryId": "senior",
+      "nameKannada": "ಕಂಠಪಾಠ(ಉರ್ದು)",
+      "nameEnglish": "Recitation (Urdu)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 4,
+      "description": "ಉರ್ದು ಸಾಹಿತ್ಯ ಹಾಗೂ ಶಾಯರಿ ಕಂಠಪಾಠ"
+    },
+    {
+      "id": "div2-ev-01-tu",
+      "categoryId": "senior",
+      "nameKannada": "ಕಂಠಪಾಠ(ತುಳು)",
+      "nameEnglish": "Recitation (Tulu)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 4,
+      "description": "ತುಳು ಕವನ ವಾಚನ ಹಾಗೂ ಶಬ್ದ ಸ್ಪಷ್ಟತೆ"
+    },
+    {
+      "id": "div2-ev-01-ko",
+      "categoryId": "senior",
+      "nameKannada": "ಕಂಠಪಾಠ(ಕೊಂಕಣಿ)",
+      "nameEnglish": "Recitation (Konkani)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 4,
+      "description": "ಕೊಂಕಣಿ ಸಾಹಿತ್ಯದ ನೈಜ ಕಂಠಪಾಠ"
+    },
+    {
+      "id": "div2-ev-01-ta",
+      "categoryId": "senior",
+      "nameKannada": "ಕಂಠಪಾಠ(ತಮಿಳು)",
+      "nameEnglish": "Recitation (Tamil)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 4,
+      "description": "ತಮಿಳು ಪದ್ಯಗಳ ರಾಗಬದ್ಧ ಹಾಗೂ ನಿಖರ ಪಠಣ"
+    },
+    {
+      "id": "div2-ev-01-te",
+      "categoryId": "senior",
+      "nameKannada": "ಕಂಠಪಾಠ(ತೆಲಗು)",
+      "nameEnglish": "Recitation (Telugu)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 4,
+      "description": "ತೆಲುಗು ಪದ್ಯಗಳ ಛಂದೋಬದ್ಧ ಕಂಠಪಾಠ"
+    },
+    {
+      "id": "div2-ev-02-sa",
+      "categoryId": "senior",
+      "nameKannada": "ಧಾರ್ಮಿಕ ಪಠಣ (ಸಂಸ್ಕೃತ)",
+      "nameEnglish": "Religious Recitation (Sanskrit)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 4,
+      "description": "ಶಾಸ್ತ್ರಬದ್ಧ ಸಂಸ್ಕೃತ ಶ್ಲೋಕ, ಮಂತ್ರೋಚ್ಚಾರಣೆ ಹಾಗೂ ಶುದ್ಧಿ"
+    },
+    {
+      "id": "div2-ev-02-ar",
+      "categoryId": "senior",
+      "nameKannada": "ಧಾರ್ಮಿಕ ಪಠಣ (ಅರೇಬಿಕ್)",
+      "nameEnglish": "Religious Recitation (Arabic)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 4,
+      "description": "ಅರೇಬಿಕ್ ಖುರಾನ್ ಸೂರಾ ಹಾಗೂ ತಜ್ವೀದ್ ಪಠಣ"
     },
     {
       "id": "div2-ev-03",
@@ -192,7 +391,7 @@
       "nameEnglish": "Patriotic Song",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 4,
       "description": "ರಾಷ್ಟ್ರಪ್ರೇಮ ಗೀತೆ, ತಾಳ-ಲಯ ಬದ್ಧತೆ"
     },
@@ -203,7 +402,7 @@
       "nameEnglish": "Essay Writing",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 60,
       "description": "ಸ್ಥಳದಲ್ಲೇ ನೀಡುವ ವಿಷಯಕ್ಕೆ ಪ್ರಬಂಧ ರಚನೆ (ಶುದ್ಧ ಹಸ್ತಾಕ್ಷರ)"
     },
@@ -214,7 +413,7 @@
       "nameEnglish": "Story Telling",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 4,
       "description": "ಜಾನಪದ / ಪೌರಾಣಿಕ / ಸಾಮಾಜಿಕ ಕಥಾ ನಿರೂಪಣೆ"
     },
@@ -225,7 +424,7 @@
       "nameEnglish": "Drawing & Painting",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 60,
       "description": "ಸ್ಥಳದಲ್ಲೇ ನೀಡುವ ವಿಷಯಕ್ಕೆ ನೈಸರ್ಗಿಕ ಚಿತ್ರ ರಚನೆ"
     },
@@ -236,7 +435,7 @@
       "nameEnglish": "Action Song",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 4,
       "description": "ಹಾಡು ಮತ್ತು ನಟನೆಯ ರಸಪೂರ್ಣ ಪ್ರದರ್ಶನ"
     },
@@ -247,7 +446,7 @@
       "nameEnglish": "Clay Modeling",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 45,
       "description": "ಕಲಾತ್ಮಕ ಜೇಡಿಮಣ್ಣಿನ ಮಾದರಿ ನಿರ್ಮಾಣ"
     },
@@ -258,7 +457,7 @@
       "nameEnglish": "Devotional Song",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 4,
       "description": "ದಾಸರ ಪದಗಳು, ವಚನಗಳು, ಭಕ್ತಿಗೀತೆಗಳು"
     },
@@ -269,7 +468,7 @@
       "nameEnglish": "Extempore Speech",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 4,
       "description": "ಚೀಟಿ ಎತ್ತಿ 5 ನಿಮಿಷಗಳಲ್ಲಿ ಭಾಷಣ ಸಿದ್ಧತೆ"
     },
@@ -280,7 +479,7 @@
       "nameEnglish": "Poetry / Vachana Recitation",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 4,
       "description": "ಕನ್ನಡ ಕವಿಗಳ ಕವನ ಅಥವಾ ಶರಣರ ವಚನಗಳ ಅರ್ಥಪೂರ್ಣ ವಾಚನ"
     },
@@ -291,31 +490,131 @@
       "nameEnglish": "Mimicry",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 4,
       "description": "ಪಕ್ಷಿ, ಪ್ರಾಣಿ, ವಾಹನ ಹಾಗೂ ವಿಶಿಷ್ಟ ಶಬ್ದಗಳ ಅನುಕರಣೆ"
     },
+
     {
-      "id": "div3-ev-01",
+      "id": "div3-ev-01-kn",
       "categoryId": "high_school",
-      "nameKannada": "ಕಂಠಪಾಠ",
-      "nameEnglish": "Recitation",
+      "nameKannada": "ಕಂಠಪಾಠ(ಕನ್ನಡ)",
+      "nameEnglish": "Recitation (Kannada)",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 5,
       "description": "ಪ್ರಾಚೀನ / ಆಧುನಿಕ ಕನ್ನಡ ಕಾವ್ಯ ಕಂಠಪಾಠ"
     },
     {
-      "id": "div3-ev-02",
+      "id": "div3-ev-01-en",
       "categoryId": "high_school",
-      "nameKannada": "ಧಾರ್ಮಿಕ ಪಠಣ",
-      "nameEnglish": "Religious Recitation",
+      "nameKannada": "ಕಂಠಪಾಠ(ಇಂಗ್ಲೀಷ)",
+      "nameEnglish": "Recitation (English)",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 5,
-      "description": "ವೇದ, ಭಗವದ್ಗೀತೆ, ಖುರಾನ್, ಬೈಬಲ್ ಸೂಕ್ತಿಗಳ ಶಾಸ್ತ್ರೋಕ್ತ ಪಠಣ"
+      "description": "ಆಂಗ್ಲ ಶ್ರೇಷ್ಠ ಕಾವ್ಯಗಳ ಸ್ಪಷ್ಟ ಹಾಗೂ ಭಾವಪೂರ್ಣ ಕಂಠಪಾಠ"
+    },
+    {
+      "id": "div3-ev-01-hi",
+      "categoryId": "high_school",
+      "nameKannada": "ಕಂಠಪಾಠ(ಹಿಂದಿ)",
+      "nameEnglish": "Recitation (Hindi)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 5,
+      "description": "ಹಿಂದಿ ಸಾಹಿತ್ಯದ ದೋಹಾ, ಕವಿತೆಗಳ ಕಂಠಪಾಠ"
+    },
+    {
+      "id": "div3-ev-01-mr",
+      "categoryId": "high_school",
+      "nameKannada": "ಕಂಠಪಾಠ(ಮರಾಠಿ)",
+      "nameEnglish": "Recitation (Marathi)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 5,
+      "description": "ಮರಾಠಿ ಕಾವ್ಯ ಶೈಲಿ ಹಾಗೂ ಉಚ್ಚಾರಣೆ"
+    },
+    {
+      "id": "div3-ev-01-ur",
+      "categoryId": "high_school",
+      "nameKannada": "ಕಂಠಪಾಠ(ಉರ್ದು)",
+      "nameEnglish": "Recitation (Urdu)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 5,
+      "description": "ಉರ್ದು ಗಝಲ್ ಹಾಗೂ ಶಾಯರಿ ಕಂಠಪಾಠ"
+    },
+    {
+      "id": "div3-ev-01-tu",
+      "categoryId": "high_school",
+      "nameKannada": "ಕಂಠಪಾಠ(ತುಳು)",
+      "nameEnglish": "Recitation (Tulu)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 5,
+      "description": "ತುಳು ಭಾಷೆಯ ಪ್ರಾಚೀನ ಹಾಗೂ ಆಧುನಿಕ ಕಾವ್ಯ ಕಂಠಪಾಠ"
+    },
+    {
+      "id": "div3-ev-01-ko",
+      "categoryId": "high_school",
+      "nameKannada": "ಕಂಠಪಾಠ(ಕೊಂಕಣಿ)",
+      "nameEnglish": "Recitation (Konkani)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 5,
+      "description": "ಕೊಂಕಣಿ ಸಾಹಿತ್ಯ ಕಂಠಪಾಠ ಹಾಗೂ ಅಭಿವ್ಯಕ್ತಿ"
+    },
+    {
+      "id": "div3-ev-01-ta",
+      "categoryId": "high_school",
+      "nameKannada": "ಕಂಠಪಾಠ(ತಮಿಳು)",
+      "nameEnglish": "Recitation (Tamil)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 5,
+      "description": "ತಮಿಳು ಕಾವ್ಯ ಹಾಗೂ ತಿರುಕ್ಕುರಲ್ ಪಠಣ"
+    },
+    {
+      "id": "div3-ev-01-te",
+      "categoryId": "high_school",
+      "nameKannada": "ಕಂಠಪಾಠ(ತೆಲಗು)",
+      "nameEnglish": "Recitation (Telugu)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 5,
+      "description": "ತೆಲುಗು ಪದ್ಯ ಹಾಗೂ ಶತಕಗಳ ಕಂಠಪಾಠ"
+    },
+    {
+      "id": "div3-ev-02-sa",
+      "categoryId": "high_school",
+      "nameKannada": "ಧಾರ್ಮಿಕ ಪಠಣ (ಸಂಸ್ಕೃತ)",
+      "nameEnglish": "Religious Recitation (Sanskrit)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 5,
+      "description": "ವೇದ, ಭಗವದ್ಗೀತೆ, ಸಂಸ್ಕೃತ ಶ್ಲೋಕಗಳ ಶಾಸ್ತ್ರೋಕ್ತ ಪಠಣ"
+    },
+    {
+      "id": "div3-ev-02-ar",
+      "categoryId": "high_school",
+      "nameKannada": "ಧಾರ್ಮಿಕ ಪಠಣ (ಅರೇಬಿಕ್)",
+      "nameEnglish": "Religious Recitation (Arabic)",
+      "isGroupEvent": false,
+      "maxParticipants": 1,
+      "maxMarks": 10,
+      "timeLimitMinutes": 5,
+      "description": "ಪವಿತ್ರ ಖುರಾನ್ ಸೂಕ್ತಿಗಳ ಶಾಸ್ತ್ರೋಕ್ತ ಅರೇಬಿಕ್ ಕಿರಾತ್ ಪಠಣ"
     },
     {
       "id": "div3-ev-03",
@@ -324,7 +623,7 @@
       "nameEnglish": "Folk Song",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 5,
       "description": "ಅಪ್ಪಟ ಉತ್ತರ ಕರ್ನಾಟಕ ಜಾನಪದ ಸೊಗಡಿನ ಗಾಯನ"
     },
@@ -335,7 +634,7 @@
       "nameEnglish": "Bhavageethe",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 5,
       "description": "ನವೋದಯ ಹಾಗೂ ನವ್ಯ ಕವಿಗಳ ಭಾವಗೀತೆ ಗಾಯನ"
     },
@@ -346,7 +645,7 @@
       "nameEnglish": "Bharatanatyam",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 6,
       "description": "ಶಾಸ್ತ್ರೀಯ ಭರತನಾಟ್ಯ, ಭಾವ-ರಾಗ-ತಾಳ ಸಮನ್ವಯ"
     },
@@ -357,7 +656,7 @@
       "nameEnglish": "Essay Writing",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 60,
       "description": "ಸಮಕಾಲೀನ ಹಾಗೂ ವೈಜ್ಞಾನಿಕ ವಿಷಯದ ಮೇಲೆ ಪ್ರಬಂಧ"
     },
@@ -368,7 +667,7 @@
       "nameEnglish": "Drawing & Painting",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 60,
       "description": "ಜಲವರ್ಣ / ತೈಲವರ್ಣ ಕಲಾಕೃತಿ ರಚನೆ"
     },
@@ -379,7 +678,7 @@
       "nameEnglish": "Mimicry",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 4,
       "description": "ಧ್ವನಿ ಅನುಕರಣೆ ಮತ್ತು ರಂಗಾಭಿನಯ"
     },
@@ -390,7 +689,7 @@
       "nameEnglish": "Debate Competition",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 5,
       "description": "ಪರ ಅಥವಾ ವಿರೋಧ ತಾರ್ಕಿಕ ವಿಚಾರ ಮಂಡನೆ"
     },
@@ -401,7 +700,7 @@
       "nameEnglish": "Rangoli",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 45,
       "description": "ಸಾಂಪ್ರದಾಯಿಕ ಕರ್ನಾಟಕ ರಂಗೋಲಿ ವಿನ್ಯಾಸ"
     },
@@ -412,7 +711,7 @@
       "nameEnglish": "Ghazal Singing",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 5,
       "description": "ಕನ್ನಡ ಅಥವಾ ಉರ್ದು ಗಝಲ್ ಶಾಸ್ತ್ರೀಯ ಗಾಯನ"
     },
@@ -423,7 +722,7 @@
       "nameEnglish": "Poetry / Vachana Recitation",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 5,
       "description": "ಶರಣರ ವಚನ, ಕೀರ್ತನೆ ಅಥವಾ ನವೋದಯ ಕವನ ವಾಚನ"
     },
@@ -434,7 +733,7 @@
       "nameEnglish": "Extempore Speech",
       "isGroupEvent": false,
       "maxParticipants": 1,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 4,
       "description": "ಚೀಟಿ ಎತ್ತಿ ತತ್ಕ್ಷಣದ ವಾಕ್ಚಾತುರ್ಯ ಪ್ರದರ್ಶನ"
     },
@@ -445,7 +744,7 @@
       "nameEnglish": "Folk Dance (Group)",
       "isGroupEvent": true,
       "maxParticipants": 8,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 7,
       "description": "ಕರ್ನಾಟಕದ ಜನಪದ ಕಲಾ ಪ್ರಕಾರ (ಡೊಳ್ಳು, ವೀರಗಾಸೆ, ಸುಗ್ಗಿ, ಇತ್ಯಾದಿ) - ಸಾಮೂಹಿಕ ಸ್ಪರ್ಧೆ"
     },
@@ -456,7 +755,7 @@
       "nameEnglish": "Quiz Competition (Group)",
       "isGroupEvent": true,
       "maxParticipants": 2,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 30,
       "description": "ಸಾಮಾನ್ಯ ಜ್ಞಾನ, ಸಾಹಿತ್ಯ ಹಾಗೂ ವಿಜ್ಞಾನ ರಸಪ್ರಶ್ನೆ - ಸಾಮೂಹಿಕ ಸ್ಪರ್ಧೆ"
     },
@@ -467,7 +766,7 @@
       "nameEnglish": "Qawwali (Group)",
       "isGroupEvent": true,
       "maxParticipants": 6,
-      "maxMarks": 100,
+      "maxMarks": 10,
       "timeLimitMinutes": 7,
       "description": "ಸಾಂಪ್ರದಾಯಿಕ ಸೂಫಿ ಹಾಗೂ ಭಕ್ತಿ ಕವ್ವಾಲಿ ಗಾಯನ - ಸಾಮೂಹಿಕ ಸ್ಪರ್ಧೆ"
     }

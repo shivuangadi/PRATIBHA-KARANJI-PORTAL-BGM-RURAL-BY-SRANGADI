@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { OFFICIAL_INFO, COMPETITION_EVENTS, CLUSTERS } from '../../data/mockData';
+import React, { useState, useEffect } from 'react';
+import { useApp } from '../../context/AppContext';
+import { COMPETITION_EVENTS, CLUSTERS } from '../../data/mockData';
 import { 
   Settings, 
   Building2, 
@@ -14,20 +15,39 @@ import {
 } from 'lucide-react';
 
 export const AdminSettingsView: React.FC = () => {
-  const [beoName, setBeoName] = useState(OFFICIAL_INFO.beoName);
-  const [brcName, setBrcName] = useState(OFFICIAL_INFO.brcName);
-  const [nodalOfficer, setNodalOfficer] = useState(OFFICIAL_INFO.nodalOfficer);
-  const [helpline, setHelpline] = useState(OFFICIAL_INFO.helpline);
-  const [address, setAddress] = useState(OFFICIAL_INFO.address);
-  const [academicYear, setAcademicYear] = useState('2026–27');
+  const { officialInfo, updateOfficialInfo } = useApp();
+
+  const [beoName, setBeoName] = useState(officialInfo.beoName);
+  const [brcName, setBrcName] = useState(officialInfo.brcName);
+  const [nodalOfficer, setNodalOfficer] = useState(officialInfo.nodalOfficer);
+  const [helpline, setHelpline] = useState(officialInfo.helpline);
+  const [address, setAddress] = useState(officialInfo.address);
+  const [academicYear, setAcademicYear] = useState(officialInfo.academicYear || '2026–27');
   const [maxIndividualEvents, setMaxIndividualEvents] = useState(2);
   const [maxGroupEvents, setMaxGroupEvents] = useState(1);
   const [isSaved, setIsSaved] = useState(false);
 
+  useEffect(() => {
+    setBeoName(officialInfo.beoName);
+    setBrcName(officialInfo.brcName);
+    setNodalOfficer(officialInfo.nodalOfficer);
+    setHelpline(officialInfo.helpline);
+    setAddress(officialInfo.address);
+    setAcademicYear(officialInfo.academicYear || '2026–27');
+  }, [officialInfo]);
+
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
+    updateOfficialInfo({
+      beoName,
+      brcName,
+      nodalOfficer,
+      helpline,
+      address,
+      academicYear,
+    });
     setIsSaved(true);
-    setTimeout(() => setIsSaved(false), 3000);
+    setTimeout(() => setIsSaved(false), 3500);
   };
 
   return (

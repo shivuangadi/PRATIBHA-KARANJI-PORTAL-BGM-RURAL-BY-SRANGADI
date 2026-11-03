@@ -1,5 +1,64 @@
-import { ClusterInfo, CompetitionCategory, CompetitionEvent, JudgeInfo, SchoolInfo, ScoreEntry, StudentParticipant } from '../types';
+import { 
+  ClusterInfo, 
+  CompetitionCategory, 
+  CompetitionEvent, 
+  JudgeInfo, 
+  SchoolInfo, 
+  ScoreEntry, 
+  StudentParticipant,
+  CompetitionCriterion,
+  CompetitionCriteriaConfig
+} from '../types';
 import competitionConfig from '../config/competitionConfig.json';
+import criteriaConfigData from './criteriaConfig.json';
+
+export const CRITERIA_METADATA = criteriaConfigData.metadata;
+export const COMPETITION_CRITERIA_LIST: CompetitionCriteriaConfig[] = criteriaConfigData.competitions as CompetitionCriteriaConfig[];
+
+/**
+ * Returns the exact 10-mark evaluation criteria for a given competition name or event ID.
+ * Matches specific Kannada names (including language-specific recitations, religious recitations, etc.)
+ */
+export function getCompetitionCriteria(eventNameOrId?: string): CompetitionCriterion[] {
+  if (!eventNameOrId) {
+    return [
+      { name: 'ಪ್ರಸ್ತುತಿ', maxMarks: 2.5 },
+      { name: 'ಶ್ರುತಿ / ಉಚ್ಚಾರಣೆ', maxMarks: 2.5 },
+      { name: 'ಕಲಾತ್ಮಕತೆ', maxMarks: 2.5 },
+      { name: 'ಸಮಯಪಾಲನೆ', maxMarks: 2.5 },
+    ];
+  }
+
+  const query = eventNameOrId.trim().toLowerCase();
+
+  // 1. Direct ID match
+  const byId = COMPETITION_CRITERIA_LIST.find(c => c.id.toLowerCase() === query);
+  if (byId) return byId.criteria;
+
+  // 2. Exact or substring match in name or matchPatterns
+  for (const comp of COMPETITION_CRITERIA_LIST) {
+    if (query === comp.name.toLowerCase() || query.includes(comp.name.toLowerCase()) || comp.name.toLowerCase().includes(query)) {
+      return comp.criteria;
+    }
+    if (comp.matchPatterns) {
+      for (const pat of comp.matchPatterns) {
+        const patLower = pat.toLowerCase();
+        if (query === patLower || query.includes(patLower) || patLower.includes(query)) {
+          return comp.criteria;
+        }
+      }
+    }
+  }
+
+  // 3. Fallback standard 4 criteria totaling 10
+  return [
+    { name: 'ಪ್ರಸ್ತುತಿ / ಹಾವಭಾವ', maxMarks: 2.5 },
+    { name: 'ಉಚ್ಚಾರಣೆ / ರಾಗ', maxMarks: 2.5 },
+    { name: 'ಕಲಾತ್ಮಕತೆ / ವಿಷಯ', maxMarks: 2.5 },
+    { name: 'ಸಮಯಪಾಲನೆ ಮತ್ತು ಶಿಸ್ತು', maxMarks: 2.5 },
+  ];
+}
+
 
 export const OFFICIAL_INFO = {
   departmentKannada: 'ಶಾಲಾ ಶಿಕ್ಷಣ ಮತ್ತು ಸಾಕ್ಷರತಾ ಇಲಾಖೆ',
@@ -212,290 +271,11 @@ export const SCHOOLS: SchoolInfo[] = [
   },
 ];
 
-export const STUDENTS: StudentParticipant[] = [
-  {
-    id: 'st-01',
-    chestNumber: 'AR-101',
-    satsId: '109845210',
-    nameKannada: 'ಕುಮಾರಿ ಸ್ಪೂರ್ತಿ ಅಶೋಕ ಅಂಗಡಿ',
-    nameEnglish: 'Spoorti A. Angadi',
-    gender: 'ಹೆಣ್ಣು',
-    schoolId: 'sch-01',
-    schoolNameKannada: 'ಸ.ಮಾ.ಪ್ರಾ.ಶಾಲೆ ಅರಳಿಕಟ್ಟಿ',
-    clusterId: 'c01',
-    clusterNameKannada: 'ಅರಳಿಕಟ್ಟಿ',
-    grade: '4ನೇ ತರಗತಿ',
-    categoryId: 'junior',
-    categoryKannada: 'ಕಿರಿಯ ವಿಭಾಗ (1-4)',
-    eventId: 'div1-ev-03',
-    eventNameKannada: 'ದೇಶಭಕ್ತಿ ಗೀತೆ',
-    mobile: '9845678901',
-    status: 'ಖಚಿತಗೊಂಡಿದೆ',
-  },
-  {
-    id: 'st-02',
-    chestNumber: 'BH-102',
-    satsId: '109845211',
-    nameKannada: 'ಕುಮಾರ ಸಮರ್ಥ ಈಶ್ವರ ಬೆಂಡಿಗೇರಿ',
-    nameEnglish: 'Samarth I. Bendigeri',
-    gender: 'ಗಂಡು',
-    schoolId: 'sch-04',
-    schoolNameKannada: 'ಶ್ರೀ ಬಸವೇಶ್ವರ ಗ್ರಾಮೀಣ ಪ್ರೌಢಶಾಲೆ ಬೆಂಡಿಗೇರಿ',
-    clusterId: 'c04',
-    clusterNameKannada: 'ಬೆಂಡಿಗೇರಿ',
-    grade: '3ನೇ ತರಗತಿ',
-    categoryId: 'junior',
-    categoryKannada: 'ಕಿರಿಯ ವಿಭಾಗ (1-4)',
-    eventId: 'div1-ev-01',
-    eventNameKannada: 'ಕಂಠಪಾಠ',
-    mobile: '9845678902',
-    status: 'ಖಚಿತಗೊಂಡಿದೆ',
-  },
-  {
-    id: 'st-03',
-    chestNumber: 'BG-201',
-    satsId: '109845212',
-    nameKannada: 'ಕುಮಾರಿ ಸನ್ನಿಧಿ ಮಲ್ಲಿಕಾರ್ಜುನ ಪಾಟೀಲ',
-    nameEnglish: 'Sannidhi M. Patil',
-    gender: 'ಹೆಣ್ಣು',
-    schoolId: 'sch-03',
-    schoolNameKannada: 'ಸ.ಹಿ.ಪ್ರಾ.ಶಾಲೆ ಬೆಳಗುಂದಿ',
-    clusterId: 'c03',
-    clusterNameKannada: 'ಬೆಳಗುಂದಿ',
-    grade: '7ನೇ ತರಗತಿ',
-    categoryId: 'senior',
-    categoryKannada: 'ಹಿರಿಯ ವಿಭಾಗ (5-7)',
-    eventId: 'div2-ev-09',
-    eventNameKannada: 'ಭಕ್ತಿ ಗೀತೆ',
-    mobile: '9845678903',
-    status: 'ಖಚಿತಗೊಂಡಿದೆ',
-  },
-  {
-    id: 'st-04',
-    chestNumber: 'HD-202',
-    satsId: '109845213',
-    nameKannada: 'ಕುಮಾರ ರೋಹನ್ ಬಸವರಾಜ ಕುಲಕರ್ಣಿ',
-    nameEnglish: 'Rohan B. Kulkarni',
-    gender: 'ಗಂಡು',
-    schoolId: 'sch-05',
-    schoolNameKannada: 'ಸರ್ಕಾರಿ ಪ್ರೌಢಶಾಲೆ ಹಿಂಡಲಗಾ',
-    clusterId: 'c11',
-    clusterNameKannada: 'ಹಿಂಡಲಗಾ',
-    grade: '6ನೇ ತರಗತಿ',
-    categoryId: 'senior',
-    categoryKannada: 'ಹಿರಿಯ ವಿಭಾಗ (5-7)',
-    eventId: 'div2-ev-10',
-    eventNameKannada: 'ಆಶು ಭಾಷಣ',
-    mobile: '9845678904',
-    status: 'ಖಚಿತಗೊಂಡಿದೆ',
-  },
-  {
-    id: 'st-05',
-    chestNumber: 'KK-301',
-    satsId: '109845214',
-    nameKannada: 'ಕುಮಾರಿ ಅನನ್ಯ ಗಂಗಾಧರ ದೇಶಪಾಂಡೆ',
-    nameEnglish: 'Ananya G. Deshpande',
-    gender: 'ಹೆಣ್ಣು',
-    schoolId: 'sch-07',
-    schoolNameKannada: 'ಸರ್ಕಾರಿ ಮಾದರಿ ಪ್ರಾಥಮಿಕ ಶಾಲೆ ಕಾಕತಿ',
-    clusterId: 'c14',
-    clusterNameKannada: 'ಕಾಕತಿ',
-    grade: '10ನೇ ತರಗತಿ',
-    categoryId: 'high_school',
-    categoryKannada: 'ಪ್ರೌಢ ವಿಭಾಗ (8-12)',
-    eventId: 'div3-ev-09',
-    eventNameKannada: 'ಚರ್ಚಾಸ್ಪರ್ಧೆ',
-    mobile: '9845678905',
-    status: 'ಖಚಿತಗೊಂಡಿದೆ',
-  },
-  {
-    id: 'st-06',
-    chestNumber: 'KD-302',
-    satsId: '109845215',
-    nameKannada: 'ಕುಮಾರ ಆದರ್ಶ ಸುರೇಶ ಕಡೋಲಿ',
-    nameEnglish: 'Adarsh S. Kadoli',
-    gender: 'ಗಂಡು',
-    schoolId: 'sch-06',
-    schoolNameKannada: 'ಕರ್ನಾಟಕ ಪಬ್ಲಿಕ್ ಶಾಲೆ ಕಡೋಲಿ',
-    clusterId: 'c13',
-    clusterNameKannada: 'ಕಡೋಲಿ',
-    grade: '9ನೇ ತರಗತಿ',
-    categoryId: 'high_school',
-    categoryKannada: 'ಪ್ರೌಢ ವಿಭಾಗ (8-12)',
-    eventId: 'div3-ev-04',
-    eventNameKannada: 'ಭಾವಗೀತೆ',
-    mobile: '9845678906',
-    status: 'ಖಚಿತಗೊಂಡಿದೆ',
-  },
-  {
-    id: 'st-07',
-    chestNumber: 'YL-301',
-    satsId: '109845217',
-    nameKannada: 'ಕುಮಾರ ಸಿದ್ಧಾರ್ಥ ರಮೇಶ ಕುಂಬಾರ ಹಾಗೂ ತಂಡ',
-    nameEnglish: 'Siddharth R. Kumbar & Team',
-    gender: 'ಗಂಡು',
-    schoolId: 'sch-10',
-    schoolNameKannada: 'ಸರ್ಕಾರಿ ಪ್ರೌಢಶಾಲೆ ಯಳ್ಳೂರ',
-    clusterId: 'c25',
-    clusterNameKannada: 'ಯಳ್ಳೂರ',
-    grade: '10ನೇ ತರಗತಿ',
-    categoryId: 'high_school',
-    categoryKannada: 'ಪ್ರೌಢ ವಿಭಾಗ (8-12)',
-    eventId: 'div3-grp-01',
-    eventNameKannada: 'ಜನಪದ ನೃತ್ಯ (ಸಾಮೂಹಿಕ)',
-    mobile: '9845678908',
-    status: 'ಖಚಿತಗೊಂಡಿದೆ',
-  },
-];
+// Real production data: starts clean for real student registrations
+export const STUDENTS: StudentParticipant[] = [];
 
-export const JUDGES: JudgeInfo[] = [
-  {
-    id: 'jdg-01',
-    code: 'J-BLG-01',
-    nameKannada: 'ಪ್ರೊ. ಶ್ರೀಕಾಂತ ಕಲಬುರ್ಗಿ',
-    designation: 'ಸಂಗೀತ ಪ್ರಾಧ್ಯಾಪಕರು, ಕರ್ನಾಟಕ ಕಲಾ ಮಹಾವಿದ್ಯಾಲಯ',
-    institution: 'ಬೆಳಗಾವಿ',
-    phone: '9448220011',
-    assignedClusterId: 'c01',
-    assignedClusterName: 'ಅರಳಿಕಟ್ಟಿ',
-    assignedEvents: ['ಭಾವಗೀತೆ', 'ಭಕ್ತಿ ಗೀತೆ', 'ದೇಶಭಕ್ತಿ ಗೀತೆ'],
-    status: 'ನೇಮಕಗೊಂಡಿದೆ',
-  },
-  {
-    id: 'jdg-02',
-    code: 'J-BLG-02',
-    nameKannada: 'ಡಾ. ಮೈತ್ರಿ ಹೆಗಡೆ',
-    designation: 'ಕನ್ನಡ ಹಿರಿಯ ಉಪನ್ಯಾಸಕರು',
-    institution: 'ಸರ್ಕಾರಿ ಪದವಿ ಪೂರ್ವ ಕಾಲೇಜು, ಬೆಳಗಾವಿ',
-    phone: '9448220012',
-    assignedClusterId: 'c03',
-    assignedClusterName: 'ಬೆಳಗುಂದಿ',
-    assignedEvents: ['ಆಶು ಭಾಷಣ', 'ಚರ್ಚಾಸ್ಪರ್ಧೆ', 'ಕಂಠಪಾಠ', 'ಪ್ರಬಂಧ ರಚನೆ'],
-    status: 'ನೇಮಕಗೊಂಡಿದೆ',
-  },
-  {
-    id: 'jdg-03',
-    code: 'J-BLG-03',
-    nameKannada: 'ಶ್ರೀ ಆನಂದ ಮುತಾಲಿಕ',
-    designation: 'ರಂಗಭೂಮಿ ಹಾಗೂ ಜಾನಪದ ಕಲಾವಿದರು',
-    institution: 'ಕರ್ನಾಟಕ ನಾಟಕ ಅಕಾಡೆಮಿ, ಬೆಳಗಾವಿ',
-    phone: '9448220013',
-    assignedClusterId: 'c11',
-    assignedClusterName: 'ಹಿಂಡಲಗಾ',
-    assignedEvents: ['ಜನಪದ ನೃತ್ಯ', 'ಮಿಮಿಕ್ರಿ', 'ಕಥೆ ಹೇಳುವುದು', 'ಕವ್ವಾಲಿ'],
-    status: 'ನೇಮಕಗೊಂಡಿದೆ',
-  },
-  {
-    id: 'jdg-04',
-    code: 'J-BLG-04',
-    nameKannada: 'ಶ್ರೀಮತಿ ಸುಮಾ ಕಡಕೋಳ',
-    designation: 'ಲಲಿತಕಲಾ ಶಿಕ್ಷಕರು',
-    institution: 'ವಿಜಯ ಫೈನ್ ಆರ್ಟ್ಸ್ ಸಂಸ್ಥೆ, ಬೆಳಗಾವಿ',
-    phone: '9448220014',
-    assignedClusterId: 'c14',
-    assignedClusterName: 'ಕಾಕತಿ',
-    assignedEvents: ['ಚಿತ್ರಕಲೆ', 'ಕ್ಲೇ ಮಾಡೆಲಿಂಗ್', 'ರಂಗೋಲಿ'],
-    status: 'ನೇಮಕಗೊಂಡಿದೆ',
-  },
-  {
-    id: 'jdg-05',
-    code: 'J-BLG-05',
-    nameKannada: 'ಶ್ರೀ ವಿಶ್ವನಾಥ ರಾವ್',
-    designation: 'ಸಾಹಿತ್ಯ ಹಾಗೂ ರಸಪ್ರಶ್ನೆ ತಜ್ಞರು',
-    institution: 'ಜ್ಞಾನದರ್ಶನ ಅಧ್ಯಯನ ಕೇಂದ್ರ, ಬೆಳಗಾವಿ',
-    phone: '9448220015',
-    assignedClusterId: 'c25',
-    assignedClusterName: 'ಯಳ್ಳೂರ',
-    assignedEvents: ['ಕ್ವಿಜ್', 'ಕವನ / ವಚನ / ಪದ್ಯ ವಾಚನ', 'ಧಾರ್ಮಿಕ ಪಠಣ'],
-    status: 'ನೇಮಕಗೊಂಡಿದೆ',
-  },
-];
+// Real production data: starts clean for real judges and evaluations
+export const JUDGES: JudgeInfo[] = [];
 
-export const CONSOLIDATED_RESULTS: ScoreEntry[] = [
-  {
-    id: 'sc-01',
-    chestNumber: 'BG-201',
-    studentNameKannada: 'ಕುಮಾರಿ ಸನ್ನಿಧಿ ಮಲ್ಲಿಕಾರ್ಜುನ ಪಾಟೀಲ',
-    schoolNameKannada: 'ಸ.ಹಿ.ಪ್ರಾ.ಶಾಲೆ ಬೆಳಗುಂದಿ',
-    clusterNameKannada: 'ಬೆಳಗುಂದಿ',
-    eventId: 'div2-ev-09',
-    eventNameKannada: 'ಭಕ್ತಿ ಗೀತೆ (ಹಿರಿಯ ವಿಭಾಗ 5-7)',
-    judgeScores: [
-      {
-        judgeId: 'jdg-01',
-        judgeName: 'ಪ್ರೊ. ಶ್ರೀಕಾಂತ ಕಲಬುರ್ಗಿ',
-        criteriaScores: { presentation: 24, melodyPronunciation: 29, artistryContent: 24, timeDiscipline: 20 },
-        total: 97,
-      },
-      {
-        judgeId: 'jdg-02',
-        judgeName: 'ಡಾ. ಮೈತ್ರಿ ಹೆಗಡೆ',
-        criteriaScores: { presentation: 23, melodyPronunciation: 28, artistryContent: 23, timeDiscipline: 20 },
-        total: 94,
-      },
-    ],
-    consolidatedAverage: 95.5,
-    rank: 1,
-    qualifiedForTaluk: true,
-  },
-  {
-    id: 'sc-02',
-    chestNumber: 'KK-301',
-    studentNameKannada: 'ಕುಮಾರಿ ಅನನ್ಯ ಗಂಗಾಧರ ದೇಶಪಾಂಡೆ',
-    schoolNameKannada: 'ಸರ್ಕಾರಿ ಮಾದರಿ ಪ್ರಾಥಮಿಕ ಶಾಲೆ ಕಾಕತಿ',
-    clusterNameKannada: 'ಕಾಕತಿ',
-    eventId: 'div3-ev-09',
-    eventNameKannada: 'ಚರ್ಚಾಸ್ಪರ್ಧೆ (ಪ್ರೌಢ ವಿಭಾಗ 8-12)',
-    judgeScores: [
-      {
-        judgeId: 'jdg-02',
-        judgeName: 'ಡಾ. ಮೈತ್ರಿ ಹೆಗಡೆ',
-        criteriaScores: { presentation: 24, melodyPronunciation: 28, artistryContent: 24, timeDiscipline: 18 },
-        total: 94,
-      },
-    ],
-    consolidatedAverage: 94.0,
-    rank: 1,
-    qualifiedForTaluk: true,
-  },
-  {
-    id: 'sc-03',
-    chestNumber: 'AR-101',
-    studentNameKannada: 'ಕುಮಾರಿ ಸ್ಪೂರ್ತಿ ಅಶೋಕ ಅಂಗಡಿ',
-    schoolNameKannada: 'ಸ.ಮಾ.ಪ್ರಾ.ಶಾಲೆ ಅರಳಿಕಟ್ಟಿ',
-    clusterNameKannada: 'ಅರಳಿಕಟ್ಟಿ',
-    eventId: 'div1-ev-03',
-    eventNameKannada: 'ದೇಶಭಕ್ತಿ ಗೀತೆ (ಕಿರಿಯ ವಿಭಾಗ 1-4)',
-    judgeScores: [
-      {
-        judgeId: 'jdg-01',
-        judgeName: 'ಪ್ರೊ. ಶ್ರೀಕಾಂತ ಕಲಬುರ್ಗಿ',
-        criteriaScores: { presentation: 24, melodyPronunciation: 28, artistryContent: 24, timeDiscipline: 20 },
-        total: 96,
-      },
-    ],
-    consolidatedAverage: 96.0,
-    rank: 1,
-    qualifiedForTaluk: true,
-  },
-  {
-    id: 'sc-04',
-    chestNumber: 'YL-301',
-    studentNameKannada: 'ಕುಮಾರ ಸಿದ್ಧಾರ್ಥ ರಮೇಶ ಕುಂಬಾರ ಹಾಗೂ ತಂಡ',
-    schoolNameKannada: 'ಸರ್ಕಾರಿ ಪ್ರೌಢಶಾಲೆ ಯಳ್ಳೂರ',
-    clusterNameKannada: 'ಯಳ್ಳೂರ',
-    eventId: 'div3-grp-01',
-    eventNameKannada: 'ಜನಪದ ನೃತ್ಯ (ಸಾಮೂಹಿಕ - ಪ್ರೌಢ ವಿಭಾಗ 8-12)',
-    judgeScores: [
-      {
-        judgeId: 'jdg-03',
-        judgeName: 'ಶ್ರೀ ಆನಂದ ಮುತಾಲಿಕ',
-        criteriaScores: { presentation: 25, melodyPronunciation: 29, artistryContent: 25, timeDiscipline: 19 },
-        total: 98,
-      },
-    ],
-    consolidatedAverage: 98.0,
-    rank: 1,
-    qualifiedForTaluk: true,
-  },
-];
+// Real production data: starts clean for real scores and rankings
+export const CONSOLIDATED_RESULTS: ScoreEntry[] = [];

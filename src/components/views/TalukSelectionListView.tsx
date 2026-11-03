@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { CONSOLIDATED_RESULTS, CLUSTERS, OFFICIAL_INFO } from '../../data/mockData';
+import { useApp } from '../../context/AppContext';
+import { CLUSTERS } from '../../data/mockData';
+import { OfficialConsolidationSheet } from '../common/OfficialConsolidationSheet';
 import { 
   Sparkles, 
   Printer, 
@@ -9,16 +11,20 @@ import {
   CheckCircle2, 
   MapPin, 
   FileCheck,
-  X
+  X,
+  FileText,
+  LayoutGrid
 } from 'lucide-react';
 
 export const TalukSelectionListView: React.FC = () => {
+  const { scoreEntries, officialInfo } = useApp();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedClusterFilter, setSelectedClusterFilter] = useState('all');
   const [selectedCertificateStudent, setSelectedCertificateStudent] = useState<any | null>(null);
+  const [viewMode, setViewMode] = useState<'gov_sheet' | 'cards'>('gov_sheet');
 
-  // Filter only 1st rankers who are qualified for taluk level
-  const talukQualified = CONSOLIDATED_RESULTS.filter(r => r.rank === 1 && r.qualifiedForTaluk);
+  // Filter only 1st rankers who are qualified for taluk level from live scoreEntries
+  const talukQualified = scoreEntries.filter(r => (r.rank === 1 || r.qualifiedForTaluk));
 
   const filteredList = talukQualified.filter(r => {
     const matchesSearch =
@@ -34,7 +40,7 @@ export const TalukSelectionListView: React.FC = () => {
     <div className="space-y-6">
       
       {/* Top Banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-4 no-print">
         <div>
           <div className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-md border border-indigo-200 mb-1">
             <Sparkles className="w-3.5 h-3.5" />
@@ -48,17 +54,40 @@ export const TalukSelectionListView: React.FC = () => {
           </p>
         </div>
 
-        <button
-          onClick={() => window.print()}
-          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-700 hover:bg-indigo-800 text-white font-bold text-xs shadow-xs transition"
-        >
-          <Printer className="w-4 h-4" />
-          <span>ಆಯ್ಕೆ ಪಟ್ಟಿ ಮುದ್ರಿಸಿ (Official Roster)</span>
-        </button>
+        <div className="flex items-center gap-2">
+          {/* View Mode Toggle */}
+          <div className="inline-flex rounded-xl bg-slate-100 p-1 border border-slate-200">
+            <button
+              onClick={() => setViewMode('gov_sheet')}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
+                viewMode === 'gov_sheet' ? 'bg-indigo-700 text-white shadow-xs' : 'text-slate-700 hover:text-slate-900'
+              }`}
+            >
+              <FileText className="w-3.5 h-3.5" />
+              <span>ಅಧಿಕೃತ ಸರ್ಕಾರಿ ನಮೂನೆ</span>
+            </button>
+            <button
+              onClick={() => setViewMode('cards')}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
+                viewMode === 'cards' ? 'bg-indigo-700 text-white shadow-xs' : 'text-slate-700 hover:text-slate-900'
+              }`}
+            >
+              <LayoutGrid className="w-3.5 h-3.5" />
+              <span>ಕಾರ್ಡ್ ವ್ಯೂವ್</span>
+            </button>
+          </div>
+        </div>
       </div>
 
-      {/* Highlights Bar */}
-      <div className="bg-gradient-to-r from-indigo-900 via-indigo-950 to-slate-900 text-white p-5 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4">
+      {viewMode === 'gov_sheet' ? (
+        <OfficialConsolidationSheet 
+          initialCategory="junior"
+          initialMode="taluk_selection"
+        />
+      ) : (
+        <>
+          {/* Highlights Bar */}
+          <div className="bg-gradient-to-r from-indigo-900 via-indigo-950 to-slate-900 text-white p-5 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="space-y-1 text-center md:text-left">
           <span className="text-xs font-bold text-amber-400 uppercase tracking-widest">
             ಬೆಳಗಾವಿ ಗ್ರಾಮೀಣ ತಾಲೂಕು ಮಟ್ಟದ ಕಾರ್ಯಕ್ರಮ
@@ -117,7 +146,7 @@ export const TalukSelectionListView: React.FC = () => {
               <th className="py-3 px-3">ಶಾಲೆಯ ಹೆಸರು</th>
               <th className="py-3 px-3">ಆಯ್ಕೆಯಾದ ಕ್ಲಸ್ಟರ್</th>
               <th className="py-3 px-3">ಸ್ಪರ್ಧಾ ವಿಷಯ</th>
-              <th className="py-3 px-3 text-center">ಗಳಿಸಿದ ಅಂಕ</th>
+              <th className="py-3 px-3 text-center">ಗಳಿಸಿದ ಅಂಕ (ಗರಿಷ್ಠ 10)</th>
               <th className="py-3 px-3 text-center">ಪ್ರಮಾಣಪತ್ರ</th>
             </tr>
           </thead>
@@ -132,7 +161,7 @@ export const TalukSelectionListView: React.FC = () => {
                 <td className="py-3 px-3 text-slate-700">{row.schoolNameKannada}</td>
                 <td className="py-3 px-3 font-semibold text-emerald-800">{row.clusterNameKannada} ಕ್ಲಸ್ಟರ್</td>
                 <td className="py-3 px-3 font-medium text-slate-800">{row.eventNameKannada}</td>
-                <td className="py-3 px-3 text-center font-bold text-slate-900">{row.consolidatedAverage}</td>
+                <td className="py-3 px-3 text-center font-bold text-slate-900">{row.consolidatedAverage} / 10</td>
                 <td className="py-3 px-3 text-center">
                   <button
                     onClick={() => setSelectedCertificateStudent(row)}
@@ -147,6 +176,8 @@ export const TalukSelectionListView: React.FC = () => {
           </tbody>
         </table>
       </div>
+        </>
+      )}
 
       {/* Official Certificate Modal */}
       {selectedCertificateStudent && (
@@ -166,7 +197,7 @@ export const TalukSelectionListView: React.FC = () => {
                 ಕರ್ನಾಟಕ ಸರ್ಕಾರ • ಶಾಲಾ ಶಿಕ್ಷಣ ಮತ್ತು ಸಾಕ್ಷರತಾ ಇಲಾಖೆ
               </span>
               <h2 className="text-lg font-extrabold text-slate-900">
-                {OFFICIAL_INFO.officeKannada}
+                {officialInfo.officeKannada}
               </h2>
               <h1 className="text-2xl font-serif font-bold text-amber-800 tracking-wide mt-1">
                 ಪ್ರಶಂಸನಾ ಹಾಗೂ ಅರ್ಹತಾ ಪ್ರಮಾಣ ಪತ್ರ
